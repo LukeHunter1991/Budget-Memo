@@ -2,7 +2,7 @@ const temp = getElementById("temperature");
 const feelLike = getElementById("feel like temperature");
 const wind = getElementById("wind");
 const humidity = getElementById("humidity");
-const condition = getElementById("condition");
+const condition = getElementById("conditions");
 
 fetch(
   "https://calendarific.com/api/v2/holidays?&api_key=tBQTyKzId08JrbiEdpq5IvkSIOhdkv4h&country=AU&year=2024"
