@@ -1,0 +1,35 @@
+h1{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 700px;
+  }
+  
+  h3{
+    margin-left: 680px;
+    margin-top: 50px;
+  
+  }
+  
+  .side-bar{
+    background-color: rgb(235, 197, 84);
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: initial;
+    width: 300px;
+    height: 500px;
+    padding-left: 20px;
+    padding-top: 10px;
+    margin-left: 1500px;
+    margin-top: 100px;
+  }
+  
+  .daily-total{
+  margin-left: 20px;
+  margin-top: 40px;
+  }
+  
+  
+  input{
+  background-color: transparent;
+  border-color: black;
+  border-radius: 5px;
+  margin-left: 5px;
+  }
