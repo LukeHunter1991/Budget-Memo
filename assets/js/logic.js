@@ -45,3 +45,29 @@ const submitModal = function(e) {
 document.getElementById("add-task-btn").addEventListener('click', Modal);
 document.getElementById("closeBtn").addEventListener('click', Modal);
 document.getElementById("saveBtn").addEventListener('click' )
+
+
+// Update temperature
+if (temp) {
+  temp.textContent = `${data.main.temp} °C`;
+}
+
+// Update "feels like" temperature
+if (feelLike) {
+  feelLike.textContent = `${data.main.feels_like} °C`;
+}
+
+// Update wind speed
+if (wind) {
+  wind.textContent = `${data.wind.speed} m/s`;
+}
+
+// Update humidity
+if (humidity) {
+  humidity.textContent = `${data.main.humidity}%`;
+}
+
+// Update weather conditions
+if (condition) {
+  condition.textContent = `${data.weather[0].main}`;
+}
