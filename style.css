@@ -1,0 +1,99 @@
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+    position: absolute;
+    left: 31vw;
+    top: 0vh;
+    background-color: gray;
+    padding: 40px;
+    border-style: solid;
+    border-radius: 20px;
+    min-width: 20vw;
+}
+
+.form-label {
+    display: block;
+    /*text-align: left;*/
+    padding: 10px;
+}
+
+
+/*--------------------------------*/
+#calendar {
+    width: 700px;
+    float: left;
+}
+
+.weekday-title{
+    width:100px;
+    height:30px;
+}
+
+.day {
+    width: 100px;
+    height: 100px;
+    border: 0.5px solid black;
+}
+
+#todayCube{
+    background-color: bisque;
+}
+
+.actual:hover {
+    background-color: #ffc107;
+}
+
+#todayCube:hover {
+    background-color: #ffc107;
+}
+
+#day-display {
+    font-size: 96px;
+}
+
+#modal-test{
+    display: none;
+}
+/*-----------------------------*/
+
+/* expense list styles */
+
+h1{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 700px;
+  }
+  
+  h3{
+    margin-left: 680px;
+    margin-top: 50px;
+  
+  }
+  
+  .side-bar{
+    background-color: rgb(235, 197, 84);
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: initial;
+    width: 300px;
+    height: 500px;
+    padding-left: 20px;
+    padding-top: 10px;
+    margin-left: 1500px;
+    margin-top: 100px;
+  }
+  
+  .daily-total{
+  margin-left: 20px;
+  margin-top: 40px;
+  }
+  
+  
+  input{
+  background-color: transparent;
+  border-color: black;
+  border-radius: 5px;
+  margin-left: 5px;
+  }
