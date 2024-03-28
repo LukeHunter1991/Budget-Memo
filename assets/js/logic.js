@@ -3,7 +3,9 @@ const feelLike = document.getElementById("feel like temperature");
 const wind = document.getElementById("wind");
 const humidity = document.getElementById("humidity");
 const condition = document.getElementById("conditions");
+const holidayElement = document.getElementById("holiday");
 
+function displayHoliday() {
 fetch(
   "https://calendarific.com/api/v2/holidays?&api_key=tBQTyKzId08JrbiEdpq5IvkSIOhdkv4h&country=AU&year=2024"
 )
@@ -12,8 +14,16 @@ fetch(
   })
   .then(function (data) {
     console.log(data);
+    const holidays = data.response.holidays;
+    if (holidays && holidays.length > 0) {
+      const nextHoliday = holidays[0];
+      holidayElement.textContent = nextHoliday.name;
+    } else {
+      holidayElement.textContent = "No holidays today";
   });
+}
 
+function displayWeatherInformation() {
 fetch(
   "https://api.openweathermap.org/data/2.5/weather?lat=-37.8&lon=144.9&units=metric&appid=c99e09d6cb92d5d017461b58e28e5857"
 )
@@ -22,7 +32,33 @@ fetch(
   })
   .then(function (data) {
     console.log(data);
+
+    // Update temperature
+    if (temp) {
+      temp.textContent = `${data.main.temp} °C`;
+    }
+
+    // Update "feels like" temperature
+    if (feelLike) {
+      feelLike.textContent = `${data.main.feels_like} °C`;
+    }
+
+    // Update wind speed
+    if (wind) {
+      wind.textContent = `${data.wind.speed} m/s`;
+    }
+
+    // Update humidity
+    if (humidity) {
+      humidity.textContent = `${data.main.humidity}%`;
+    }
+
+    // Update weather conditions
+    if (condition) {
+      condition.textContent = `${data.weather[0].main}`;
+    }
   });
+}
 
 // Get modal element
 const formEl = document.getElementById("form-container");
@@ -47,27 +83,5 @@ document.getElementById("closeBtn").addEventListener('click', Modal);
 document.getElementById("saveBtn").addEventListener('click' )
 
 
-// Update temperature
-if (temp) {
-  temp.textContent = `${data.main.temp} °C`;
-}
-
-// Update "feels like" temperature
-if (feelLike) {
-  feelLike.textContent = `${data.main.feels_like} °C`;
-}
-
-// Update wind speed
-if (wind) {
-  wind.textContent = `${data.wind.speed} m/s`;
-}
-
-// Update humidity
-if (humidity) {
-  humidity.textContent = `${data.main.humidity}%`;
-}
-
-// Update weather conditions
-if (condition) {
-  condition.textContent = `${data.weather[0].main}`;
-}
+displayHoliday();
+displayWeatherInformation();
