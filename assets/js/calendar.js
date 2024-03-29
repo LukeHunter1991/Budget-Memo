@@ -1,6 +1,12 @@
+let dailyRecords = JSON.parse(localStorage.getItem('logs'));
+if (!dailyRecords) {
+    dailyRecords = [];
+};
 //-----------------------------------------------------------------//
 //the script below is about calendar area//
 let nav = 0;
+let clickedDate = null;
+
 const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 const calendarHeaderEl = document.getElementById('calendarHeader');
 const calendarEl = document.getElementById('calendarBody');
@@ -88,22 +94,62 @@ loadCalendar();
 
 
 //testing modal inputs values
-const addLogBtnEl = document.getElementById('addBtn');//test modal button
+const modalEl = document.getElementById('modal-test');
+const dateAreaEl = document.getElementById('modalDateArea');
 const formEl = document.getElementById('modalBody');//test modal body
+const selectEl = document.getElementById('selectOptionTest');
+const amountEl = document.getElementById('amountTest');
+const addLogBtnEl = document.getElementById('addBtnTest');//test modal button
+const exitBtnEl = document.getElementById('exitBtnTest');
+
 //test modal form submit event
 formEl.addEventListener('submit', (event) => {
     event.preventDefault();
-
-    console.log(document.getElementById('modalDateArea').textContent);
+    handleFormSubmit();
 
     //if the user picked housing
     // totalValues.housing += 
 
 });
 
+function handleFormSubmit() {
+    const selectedDate = dateAreaEl.textContent;
+    const category = selectEl.value;
+
+    let existingdayObj = dailyRecords.find(e => e.date === selectedDate);
+    if (existingdayObj !== undefined) {
+        existingdayObj[category] = amountEl.value;
+    } else {
+        let dayObj = {
+            date: 0,
+            travel: 0,
+            eat: 0,
+            clothes: 0,
+        };
+        dayObj.date = selectedDate;
+        //have to see if amountEl is a number or not??
+        dayObj[category] = amountEl.value;
+        dailyRecords.push(dayObj);
+    };
+    console.log(dailyRecords);
+    localStorage.setItem('logs', JSON.stringify(dailyRecords));
+
+    amountEl.value = '';
+};
+
 function openModal(date) {
-    const modalEl = document.getElementById('modal-test');
-    modalEl.style.display = 'block';
-    const dateAreaEl = document.getElementById('modalDateArea');
-    dateAreaEl.textContent = date;
-}
+    clickedDate = date;
+    const logForDay = dailyRecords.find(e => e.date === clickedDate);
+    if (logForDay) {
+        console.log('log already exists')
+    } else {
+        modalEl.style.display = 'block';
+        dateAreaEl.textContent = date;
+    };
+};
+
+function closeModal() {
+    modalEl.style.display = 'none';
+    document.getElementById('amountTest').textContent = '';
+};
+exitBtnEl.addEventListener('click', closeModal);
