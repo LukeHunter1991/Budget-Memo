@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Budget Memo</title>
-  <!--Tailwind-->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!--Bulma-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
   <!--fonts-->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
   <!--fontawesome-->
@@ -17,65 +17,71 @@
   <!--our own stylesheet-->
   <link rel="stylesheet" href="./assets/css/style.css">
 </head>
-<body class="bg-yellow-400">
-  <main class="container mx-auto text-center text-xl">
-    <section class="container border-2 p-2 rounded-2xl align-middle bg-white relative">
-      <h1 class="main-date text-6xl my-5">26th March</h1>
-      <h2 class="main-day text-3xl my-5">Tuesday</h3>
-      <h2 class="main-day text-3xl my-5" id="holiday">National Spinach Day</h3>
-      <div class="container">
-        <!--Create a button to open modal-->
-        <div class="text-center text-2xl my-5">
-          <button class="btn border-solid bg-yellow-400 border-2 border-black p-2 rounded" id="add-task-btn">Add Task</button>
-        </div>
-        <div class="hide" data-state="hide" id="form-container">
-          <form class="" id="form">
-            <div class="">
-                <label for="food" class="form-label">Food</label>
-                <input type="number" class="form-control" id="food">
+
+<body class="has-text-centered has-background-grey-lighter">
+  <main class="container hero is-large">
+    <div class="my-6 has-background-warning" id="main-container">
+      <h1 class="title is-1 my-6 has-text-grey-darker">26th March</h1>
+      <h2 class="title is-2 my-6 has-text-grey-darker">Tuesday</h3>
+        <h2 class="title is-2 my-6 has-text-grey-darker" id="holiday">National Spinach Day</h3>
+          <div class="container my-6">
+            <!--Create a button to open modal-->
+            <div class="my-6 ">
+              <button class="button is-link is-large js-modal-trigger m-3" id="add-task-btn"
+                data-target="modal-container">Add Expenses</button>
+              <button class="button is-link is-large m-3" id="visit-calendar">Visit
+                Calendar</button>
             </div>
-            <div class="">
-                <label for="utilities" class="form-label">Utilities</label>
-                <input type="number" class="form-control" id="utilities">
-            </div> 
-            <div class="">
-              <label for="travel" class="form-label">Travel</label>
-              <input type="number" class="form-control" id="travel">
+            <div class="modal" id="modal-container">
+              <div class="modal-background"></div>
+              <form class="modal-content" id="form">
+                <div class="select is-rounded mb-2">
+                  <select class="has-text-grey-darker title is-4" type="select" id="expense-select"
+                    name="expense-select" autofocus required>
+                    <option id="food" value="food">Food</option>
+                    <option id="utilities" value="utilities">Utilities</option>
+                    <option id="travel" value="travel">Travel</option>
+                    <option id="entertainment" value="entertainment">Entertainment</option>
+                    <option id="groceries" value="groceries">Groceries</option>
+                    <option id="other" value="other">Other</option>
+                  </select>
+                </div>
+                <input type="text" id="value-input" class="has-text-grey-darker title is-4 input is-rounded mb-2"
+                  type="text" placeholder="Amount spent">
+              </form>
+              <div class="modal-footer">
+                <button type="button" class="modal-close is-large" aria-label="close" id="closeBtn"></button>
+                <button type="button" class="button is-link title is-4 my-3" id="saveBtn">Save changes</button>
+              </div>
+            </div>
+            <div class="fixed-grid has-3-cols">
+              <div id="weather-container" class="grid">
+                <div class="my-2">
+                  <h3 class="title is-3 has-text-grey-darker">Termperature</h3>
+                  <div class="weather-icon " id="temp-data"></div>
+                </div>
+                <div class="my-2">
+                  <h3 class="title is-3 has-text-grey-darker">Wind</h3>
+                  <div class="weather-icon" id="wind-data"></div>
+                </div>
+                <div class="my-2">
+                  <h3 class="title is-3 has-text-grey-darker">Humidity</h3>
+                  <div class="weather-icon" id="humidity-data"></div>
+                </div>
+                <div class="my-2">
+                  <h3 class="title is-3 has-text-grey-darker">Feels Like</h3>
+                  <div class="weather-icon" id="feels-like-data"></div>
+                </div>
+                <div class="my-2">
+                  <h3 class="title is-3 has-text-grey-darker">Chance of Rain</h3>
+                  <div class="weather-icon" id="rain-data"></div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="">
-              <label for="entertainment" class="form-label">Entertainment</label>
-              <input type="number" class="form-control" id="entertainment">
-          </div>
-          <div class="">
-            <label for="groceries" class="form-label">Groceries</label>
-            <input type="number" class="form-control" id="groceries">
-        </div>
-        <div class="">
-            <label for="other" class="form-label">Other</label>
-            <input type="number" class="form-control" id="other">
-        </div> 
-          </form>
-          <div class="modal-footer">
-            <button type="button" class="btn border-solid bg-red-400 border-2 border-black p-2 rounded my-5" data-bs-dismiss="modal" id="closeBtn">Close</button>
-            <button type="button" class="btn btn border-solid bg-blue-400 border-2 border-black p-2 rounded" id="saveBtn" data-bs-dismiss="modal">Save changes</button>
-          </div>
-      </div>
-    <div id="weather-container" class="container grid grid-rows-4 grid-flow-col gap-4 my-20">
-        <h3>Termperature</h3>
-        <div class="weather-icon" id="temp-data"></div>
-        <h3>Wind</h3>
-        <div class="weather-icon" id="wind-data"></div>
-        <h3>Humidity</h3>
-        <div class="weather-icon" id="humidity-data"></div>
-        <h3>Feels Like</h3>
-        <div class="weather-icon" id="feels-like-data"></div>
-        <h3>Chance of Rain</h3>
-        <div class="weather-icon" id="rain-data"></div>
-    </div>
-    </section>
   </main>
-  <footer class="text-center align-bottom">
-    <h4>Made with ❤️ by The Code Crew</h4>
+  <footer class="footer has-background-grey-lighter">
+    <h4 class="title is-4 is-italic has-text-grey-darker mt-auto">Made with ❤️ by The Code Crew</h4>
   </footer>
 
   <!--jQuery JavaScript-->
