@@ -26,8 +26,9 @@ calendarHeaderEl.appendChild(nextBtn);
 //calendar body
 function loadCalendar() {
     const dt = new Date();//today
-    dt.setMonth(new Date().getMonth() + nav);
     const day = dt.getDate();
+    dt.setDate(1);
+    dt.setMonth(new Date().getMonth() + nav);
     const month = dt.getMonth();
     const year = dt.getFullYear();
 
@@ -177,7 +178,7 @@ function getMonthlyTotal() {
 
     for (let i = 0; i < dailyRecords.length; i++) {
         let daytest = new Date(dailyRecords[i].date);
-        if (daytest.getMonth() == new Date().getMonth() + nav) {
+        if (daytest.getMonth() == new Date().getMonth() + nav && daytest.getFullYear() == new Date().getFullYear()) {
             totalTravel += dailyRecords[i].travel;
             totalEat += dailyRecords[i].eat;
             totalClothes += dailyRecords[i].clothes;
