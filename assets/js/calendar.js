@@ -14,11 +14,11 @@ const calendarEl = document.getElementById('calendarBody');
 //calendar header
 const backBtn = document.createElement('button');
 backBtn.textContent = '<';
-backBtn.setAttribute('class', 'rounded border w-5');
+backBtn.setAttribute('class', 'button is-small');
 const monthTxt = document.createElement('h4');
 const nextBtn = document.createElement('button');
 nextBtn.textContent = '>';
-nextBtn.setAttribute('class', 'rounded border w-5');
+nextBtn.setAttribute('class', 'button is-small');
 calendarHeaderEl.appendChild(backBtn);
 calendarHeaderEl.appendChild(monthTxt);
 calendarHeaderEl.appendChild(nextBtn);
