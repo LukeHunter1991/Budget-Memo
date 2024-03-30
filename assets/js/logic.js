@@ -13,94 +13,117 @@ const year = dt.getFullYear();
 const today = `${year}-${month}-${day}`;
 
 function displayCalendar() {
-fetch(
-  "https://calendarific.com/api/v2/holidays?&api_key=tBQTyKzId08JrbiEdpq5IvkSIOhdkv4h&country=AU&year=2024"
-)
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (data) {
-    console.log(data);
-    const holidays = data.response.holidays;
-    const todayHoliday = holidays.filter(
-        (holiday) => holiday.date.iso === today
-      );
+    fetch(
+        "https://calendarific.com/api/v2/holidays?&api_key=tBQTyKzId08JrbiEdpq5IvkSIOhdkv4h&country=AU&year=2024"
+    )
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data);
+            const holidays = data.response.holidays;
+            const todayHoliday = holidays.filter(
+                (holiday) => holiday.date.iso === today
+            );
 
-      if (todayHoliday.length > 0) {
-        const holidayToday = todayHoliday[0];
-        holidayElement.textContent = holidayToday.name;
-      } else {
-        holidayElement.textContent = "No holidays today";
-      }
-  });
+            if (todayHoliday.length > 0) {
+                const holidayToday = todayHoliday[0];
+                holidayElement.textContent = holidayToday.name;
+            } else {
+                holidayElement.textContent = "No holidays today";
+            }
+        });
 }
 
 function displayWeatherInformation() {
-  fetch(
-    "https://api.openweathermap.org/data/2.5/weather?lat=-37.8&lon=144.9&units=metric&appid=c99e09d6cb92d5d017461b58e28e5857"
-  )
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
+    fetch(
+        "https://api.openweathermap.org/data/2.5/weather?lat=-37.8&lon=144.9&units=metric&appid=c99e09d6cb92d5d017461b58e28e5857"
+    )
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data);
 
-      // Update temperature
-      if (temp) {
-        temp.textContent = parseInt(data.main.temp) + "°C";
-      }
+            // Update temperature
+            if (temp) {
+                temp.textContent = parseInt(data.main.temp) + "°C";
+            }
 
-      // Update "feels like" temperature
-      if (feelLike) {
-        feelLike.textContent = parseInt(data.main.feels_like) + "°C";
-      }
+            // Update "feels like" temperature
+            if (feelLike) {
+                feelLike.textContent = parseInt(data.main.feels_like) + "°C";
+            }
 
-      // Update wind speed
-      if (wind) {
-        wind.textContent = `${data.wind.speed} m/s`;
-      }
+            // Update wind speed
+            if (wind) {
+                wind.textContent = `${data.wind.speed} m/s`;
+            }
 
-      // Update humidity
-      if (humidity) {
-        humidity.textContent = `${data.main.humidity}%`;
-      }
+            // Update humidity
+            if (humidity) {
+                humidity.textContent = `${data.main.humidity}%`;
+            }
 
-      // Update weather conditions
-      if (condition) {
-        condition.textContent = `${data.weather[0].main}`;
-      }
+            // Update weather conditions
+            if (condition) {
+                condition.textContent = `${data.weather[0].main}`;
+            }
 
-      // Update chance of rain
-      if (data.rain && data.rain["1h"] !== undefined) {
-        // Checks rain data for the last hour
-        rainChance.textContent = `${data.rain["1h"]} mm`;
-      } else {
-        rainChance.textContent = "No rain expected";
-      }
-    });
+            // Update chance of rain
+            if (data.rain && data.rain["1h"] !== undefined) {
+                // Checks rain data for the last hour
+                rainChance.textContent = `${data.rain["1h"]} mm`;
+            } else {
+                rainChance.textContent = "No rain expected";
+            }
+        });
 }
-// Get modal element
-const formEl = document.getElementById("form-container");
+// MODAL CODE
 
-// Function to show/hide modal
-const Modal = function () {
-    if (formEl.getAttribute('class') == 'hide') {
-        formEl.setAttribute('class', 'show');
-    } else {
-        formEl.setAttribute('class', 'hide');
+document.addEventListener('DOMContentLoaded', () => {
+    // Functions to open and close a modal
+    function openModal($el) {
+        $el.classList.add('is-active');
     }
-}
 
-// TO DO: Make submit modal function to redirect to calendar page.
-const submitModal = function(e) {
-    e.preventDefault();
-  window.location.href = "/path-to-your-calendar-page";
-} 
+    function closeModal($el) {
+        $el.classList.remove('is-active');
+    }
 
-// Set up event listeners for modal buttons
-document.getElementById("add-task-btn").addEventListener('click', Modal);
-document.getElementById("closeBtn").addEventListener('click', Modal);
-document.getElementById("saveBtn").addEventListener('click', submitModal);
+    function closeAllModals() {
+        (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+            closeModal($modal);
+        });
+    }
+
+    // Add a click event on buttons to open a specific modal
+    (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+        const modal = $trigger.dataset.target;
+        const $target = document.getElementById(modal);
+
+        $trigger.addEventListener('click', () => {
+            openModal($target);
+        });
+    });
+
+    // Add a click event on various child elements to close the parent modal
+    (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+        const $target = $close.closest('.modal');
+
+        $close.addEventListener('click', () => {
+            closeModal($target);
+        });
+    });
+
+    // Add a keyboard event to close all modals
+    document.addEventListener('keydown', (event) => {
+        if (event.key === "Escape") {
+            closeAllModals();
+        }
+    });
+});
+
 
 displayCalendar();
 displayWeatherInformation();
