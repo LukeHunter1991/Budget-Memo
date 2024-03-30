@@ -139,3 +139,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 displayCalendar();
 displayWeatherInformation();
+
+document.getElementById('visit-calendar').addEventListener('click', function (event) {
+    event.preventDefault;
+    window.location.href = 'calendar.html';
+});

@@ -51,6 +51,6 @@ budge-memo
 
 ## Deploy
 
-* The URL of the deployed application:  
+* The URL of the deployed application:  https://lukehunter1991.github.io/Budget-Memo/
 
 * The URL of the GitHub repository: https://github.com/LukeHunter1991/Budget-Memo
