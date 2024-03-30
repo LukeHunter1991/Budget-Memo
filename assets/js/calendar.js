@@ -40,7 +40,7 @@ function loadCalendar() {
         month: 'numeric',
         day: 'numeric',
     });
-    console.log(dateString);
+
     const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
 
     monthTxt.textContent = `${dt.toLocaleDateString('en-au', { month: 'long' })} ${year}`;
@@ -79,10 +79,14 @@ function initBtns() {
     backBtn.addEventListener('click', () => {
         nav--;
         loadCalendar();
+        //call function when displaying a new calendar month
+        getMonthlyTotal();
     });
     nextBtn.addEventListener('click', () => {
         nav++;
         loadCalendar();
+        //call function when displaying a new calendar month
+        getMonthlyTotal();
     });
 }
 
@@ -114,34 +118,41 @@ formEl.addEventListener('submit', (event) => {
 
 function handleFormSubmit() {
     const selectedDate = dateAreaEl.textContent;
-    const category = selectEl.value;
-
-    let existingdayObj = dailyRecords.find(e => e.date === selectedDate);
-    if (existingdayObj !== undefined) {
-        existingdayObj[category] = amountEl.value;
-    } else {
-        let dayObj = {
-            date: 0,
-            travel: 0,
-            eat: 0,
-            clothes: 0,
+    const category = selectEl.value.toString().toLowerCase();
+    const amount = parseFloat(amountEl.value);//convert input string to number
+    //make sure the amount input is positive
+    if (amount >= 0 === true) {
+        let existingdayObj = dailyRecords.find(e => e.date === selectedDate);
+        if (existingdayObj !== undefined) {
+            existingdayObj[category] = amount;
+        } else {
+            let dayObj = {
+                date: 0,
+                travel: 0,
+                eat: 0,
+                clothes: 0,
+            };
+            dayObj.date = selectedDate;
+            dayObj[category] = amount;
+            dailyRecords.push(dayObj);
         };
-        dayObj.date = selectedDate;
-        //have to see if amountEl is a number or not??
-        dayObj[category] = amountEl.value;
-        dailyRecords.push(dayObj);
+        console.log(dailyRecords);
+        localStorage.setItem('logs', JSON.stringify(dailyRecords));
+        //call function to calculate monthly total
+        getMonthlyTotal();
+    } else {
+        window.alert('please type in valid number');
     };
-    console.log(dailyRecords);
-    localStorage.setItem('logs', JSON.stringify(dailyRecords));
-
     amountEl.value = '';
 };
 
 function openModal(date) {
     clickedDate = date;
-    const logForDay = dailyRecords.find(e => e.date === clickedDate);
+    const logForDay = dailyRecords.find(e => e.date == clickedDate);
     if (logForDay) {
-        console.log('log already exists')
+        console.log('log already exists');
+        window.alert('log already exists see console');
+        console.log(logForDay);
     } else {
         modalEl.style.display = 'block';
         dateAreaEl.textContent = date;
@@ -153,3 +164,26 @@ function closeModal() {
     document.getElementById('amountTest').textContent = '';
 };
 exitBtnEl.addEventListener('click', closeModal);
+
+
+
+
+//-----------------this line below is about sorting array into Month and get monthly total---------------------------------//
+
+function getMonthlyTotal() {
+    let totalTravel = 0;
+    let totalEat = 0;
+    let totalClothes = 0;
+
+    for (let i = 0; i < dailyRecords.length; i++) {
+        let daytest = new Date(dailyRecords[i].date);
+        if (daytest.getMonth() == new Date().getMonth() + nav) {
+            totalTravel += dailyRecords[i].travel;
+            totalEat += dailyRecords[i].eat;
+            totalClothes += dailyRecords[i].clothes;
+        }
+    };
+    console.log(`TotalTravel $${Number(Math.round(totalTravel + 'e2') + 'e-2').toFixed(2)}`);
+    console.log(`TotalEat $${Number(Math.round(totalEat + 'e2') + 'e-2').toFixed(2)}`);
+    console.log(`TotalClothes $${Number(Math.round(totalClothes + 'e2') + 'e-2').toFixed(2)}`);
+};
