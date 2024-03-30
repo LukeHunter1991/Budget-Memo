@@ -5,12 +5,24 @@ const humidity = document.getElementById("humidity-data");
 const condition = document.getElementById("conditions");
 const rainChance = document.getElementById("rain-data");
 const holidayElement = document.getElementById("holiday");
+const dateEl = document.getElementById("date-header");
 
 const dt = new Date();
 const day = dt.getDate();
 const month = `0` + (dt.getMonth() + 1);
 const year = dt.getFullYear();
 const today = `${year}-${month}-${day}`;
+
+// Set weekday option to the full word
+const options = { weekday: "long" };
+
+// Add day + date heading to index.html
+dateEl.textContent = new Intl.DateTimeFormat("en-US", options).format(dt) + " " + today;
+
+
+
+
+
 
 function displayCalendar() {
     fetch(
@@ -108,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Add a click event on various child elements to close the parent modal
-    (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+    (document.querySelectorAll('.modal-background, .modal-close, .modal-card-foot .button') || []).forEach(($close) => {
         const $target = $close.closest('.modal');
 
         $close.addEventListener('click', () => {

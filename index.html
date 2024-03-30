@@ -18,69 +18,70 @@
   <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
-<body class="has-text-centered has-background-grey-lighter">
-  <main class="container hero is-large">
+<body class="has-text-centered has-background-grey-lighter hero is-fullheight">
+  <main class="container hero is-large mt-6">
     <div class="my-6 has-background-warning" id="main-container">
-      <h1 class="title is-1 my-6 has-text-grey-darker"></h1>
-      <h2 class="title is-2 my-6 has-text-grey-darker">
-        </h3>
-        <h2 class="title is-2 my-6 has-text-grey-darker" id="holiday">
-          </h3>
-          <div class="container my-6">
-            <!--Create a button to open modal-->
-            <div class="my-6 ">
-              <button class="button is-link is-large js-modal-trigger m-3" id="add-task-btn"
-                data-target="modal-container">Add Expenses</button>
-              <button class="button is-link is-large m-3" id="visit-calendar">Visit
-                Calendar</button>
+      <h1 class="title is-1 my-6 has-text-grey-darker" id="date-header"></h1>
+      <h2 class="title is-2 my-6 has-text-grey-darker" id="holiday"></h2>
+      <div class="container my-6">
+        <!--Create a button to open modal-->
+        <div class="my-6 ">
+          <button class="button is-link is-large js-modal-trigger m-3" id="add-task-btn"
+            data-target="modal-container">Add Expenses</button>
+          <button class="button is-link is-large m-3" id="visit-calendar">Visit
+            Calendar</button>
+        </div>
+        <div class="modal" id="modal-container">
+          <div class="modal-background"></div>
+          <form class="modal-content" id="form">
+            <div class="select is-rounded mb-2">
+              <select class="has-text-grey-darker title is-4" type="select" id="expense-select" name="expense-select"
+                autofocus required>
+                <option id="food" value="food">Food</option>
+                <option id="utilities" value="utilities">Utilities</option>
+                <option id="travel" value="travel">Travel</option>
+                <option id="entertainment" value="entertainment">Entertainment</option>
+                <option id="groceries" value="groceries">Groceries</option>
+                <option id="other" value="other">Other</option>
+              </select>
             </div>
-            <div class="modal" id="modal-container">
-              <div class="modal-background"></div>
-              <form class="modal-content" id="form">
-                <div class="select is-rounded mb-2">
-                  <select class="has-text-grey-darker title is-4" type="select" id="expense-select"
-                    name="expense-select" autofocus required>
-                    <option id="food" value="food">Food</option>
-                    <option id="utilities" value="utilities">Utilities</option>
-                    <option id="travel" value="travel">Travel</option>
-                    <option id="entertainment" value="entertainment">Entertainment</option>
-                    <option id="groceries" value="groceries">Groceries</option>
-                    <option id="other" value="other">Other</option>
-                  </select>
-                </div>
-                <input type="text" id="value-input" class="has-text-grey-darker title is-4 input is-rounded mb-2"
-                  type="text" placeholder="Amount spent">
-              </form>
-              <div class="modal-footer">
-                <button type="button" class="modal-close is-large" aria-label="close" id="closeBtn"></button>
-                <button type="button" class="button is-link title is-4 my-3" id="saveBtn">Save changes</button>
-              </div>
+            <input type="text" id="value-input" class="has-text-grey-darker title is-4 input is-rounded mb-2"
+              type="text" placeholder="Amount spent">
+          </form>
+          <div class="modal-footer">
+            <button type="button" class="modal-close is-large" aria-label="close" id="closeBtn"></button>
+            <button type="button" class="button is-link title is-4 my-3" id="saveBtn">Save changes</button>
+          </div>
+        </div>
+        <div class="fixed-grid has-3-cols">
+          <div id="weather-container" class="grid">
+            <div class="my-2">
+              <h3 class="title is-3 has-text-grey-darker">Termperature</h3>
+              <div class="weather-icon title is-4 has-text-link" id="temp-data"></div>
             </div>
-            <div class="fixed-grid has-3-cols">
-              <div id="weather-container" class="grid">
-                <div class="my-2">
-                  <h3 class="title is-3 has-text-grey-darker">Termperature</h3>
-                  <div class="weather-icon title is-4 has-text-link" id="temp-data"></div>
-                </div>
-                <div class="my-2">
-                  <h3 class="title is-3 has-text-grey-darker">Wind</h3>
-                  <div class="weather-icon title is-4 has-text-link" id="wind-data"></div>
-                </div>
-                <div class="my-2">
-                  <h3 class="title is-3 has-text-grey-darker">Humidity</h3>
-                  <div class="weather-icon title is-4 has-text-link" id="humidity-data"></div>
-                </div>
-                <div class="my-2">
-                  <h3 class="title is-3 has-text-grey-darker">Feels Like</h3>
-                  <div class="weather-icon title is-4 has-text-link" id="feels-like-data"></div>
-                </div>
-                <div class="my-2">
-                  <h3 class="title is-3 has-text-grey-darker">Chance of Rain</h3>
-                  <div class="weather-icon title is-4 has-text-link" id="rain-data"></div>
-                </div>
-              </div>
+            <div class="my-2">
+              <h3 class="title is-3 has-text-grey-darker">Wind</h3>
+              <div class="weather-icon title is-4 has-text-link" id="wind-data"></div>
+            </div>
+            <div class="my-2">
+              <h3 class="title is-3 has-text-grey-darker">Humidity</h3>
+              <div class="weather-icon title is-4 has-text-link" id="humidity-data"></div>
+            </div>
+            <div class="my-2">
+              <h3 class="title is-3 has-text-grey-darker">Feels Like</h3>
+              <div class="weather-icon title is-4 has-text-link" id="feels-like-data"></div>
+            </div>
+            <div class="my-2">
+              <h3 class="title is-3 has-text-grey-darker">Chance of Rain</h3>
+              <div class="weather-icon title is-4 has-text-link" id="rain-data"></div>
+            </div>
+            <div class="my-2">
+              <h3 class="title is-3 has-text-grey-darker">Condition</h3>
+              <div class="weather-icon title is-4 has-text-link" id="conditions"></div>
             </div>
           </div>
+        </div>
+      </div>
   </main>
   <footer class="footer has-background-grey-lighter">
     <h4 class="title is-4 is-italic has-text-grey-darker mt-auto">Made with ❤️ by The Code Crew</h4>
