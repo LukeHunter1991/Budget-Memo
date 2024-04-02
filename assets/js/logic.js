@@ -6,6 +6,9 @@ const condition = document.getElementById("conditions");
 const rainChance = document.getElementById("rain-data");
 const holidayElement = document.getElementById("holiday");
 const dateEl = document.getElementById("date-header");
+const submitBtn = document.getElementById("saveBtn");
+const expenseInputEl = document.getElementById("expense-select");
+const amountInputEl = document.getElementById("value-input");
 
 const dt = new Date();
 const day = dt.getDate();
@@ -145,4 +148,49 @@ document.getElementById('visit-calendar').addEventListener('click', function (ev
     window.location.href = 'calendar.html';
 });
 
+// Add function to get/create array in local storage.
+let dailyRecords = JSON.parse(localStorage.getItem('logs'));
+if (!dailyRecords) {
+    dailyRecords = [];
+};
+
 // Add function to save index.html form data into local storage
+
+//test modal form submit event
+submitBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    handleFormSubmit(today, expenseInputEl, amountInputEl);
+    // Clear form
+    document.getElementById("form").reset();
+});
+
+function handleFormSubmit(selectedDate, category, amount) {
+    category = category.value.toString().toLowerCase();
+    amount = parseFloat(amount.value);//convert input string to number
+    //make sure the amount input is positive
+    if (amount >= 0 === true) {
+        let existingdayObj = dailyRecords.find(e => e.date === selectedDate);
+        if (existingdayObj !== undefined) {
+            existingdayObj[category] = amount;
+        } else {
+            let dayObj = {
+                date: 0,
+                food: 0,
+                utilities: 0,
+                housing: 0,
+                travel: 0,
+                entertainment: 0,
+                grocery: 0,
+                other: 0,
+            };
+            dayObj.date = selectedDate;
+            dayObj[category] = amount;
+            dailyRecords.push(dayObj);
+        };
+        console.log(dailyRecords);
+        localStorage.setItem('logs', JSON.stringify(dailyRecords));
+    } else {
+        window.alert('please type in valid number');
+    };
+};
