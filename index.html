@@ -18,9 +18,9 @@
   <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
-<body class="has-text-centered has-background-grey-lighter hero is-fullheight">
+<body class="has-text-centered has-background-warning hero is-fullheight">
   <main class="container hero is-large mt-6">
-    <div class="my-6 has-background-warning" id="main-container">
+    <div class="my-6 has-background-white" id="main-container">
       <h1 class="title is-1 my-6 has-text-grey-darker" id="date-header"></h1>
       <h2 class="title is-2 my-6 has-text-grey-darker" id="holiday"></h2>
       <div class="container my-6">
@@ -28,7 +28,7 @@
         <div class="my-6 ">
           <button class="button is-link is-large js-modal-trigger m-3" id="add-task-btn"
             data-target="modal-container">Add Expenses</button>
-          <button class="button is-link is-large m-3" id="visit-calendar">Visit
+          <button class="button is-link is-light has-text-link-light-invert is-large m-3" id="visit-calendar">Visit
             Calendar</button>
         </div>
         <div class="modal" id="modal-container">
@@ -40,6 +40,7 @@
                 <option id="food" value="food">Food</option>
                 <option id="utilities" value="utilities">Utilities</option>
                 <option id="travel" value="travel">Travel</option>
+                <option id="housing" value="housing">Housing</option>
                 <option id="entertainment" value="entertainment">Entertainment</option>
                 <option id="groceries" value="groceries">Groceries</option>
                 <option id="other" value="other">Other</option>
@@ -83,7 +84,7 @@
         </div>
       </div>
   </main>
-  <footer class="footer has-background-grey-lighter">
+  <footer class="footer has-background-warning">
     <h4 class="title is-4 is-italic has-text-grey-darker mt-auto">Made with ❤️ by The Code Crew</h4>
   </footer>
 
