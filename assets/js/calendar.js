@@ -129,9 +129,13 @@ function handleFormSubmit() {
         } else {
             let dayObj = {
                 date: 0,
+                food: 0,
+                utilities: 0,
+                housing: 0,
                 travel: 0,
-                eat: 0,
-                clothes: 0,
+                entertainment: 0,
+                grocery: 0,
+                other: 0,
             };
             dayObj.date = selectedDate;
             dayObj[category] = amount;
@@ -172,19 +176,32 @@ exitBtnEl.addEventListener('click', closeModal);
 //-----------------this line below is about sorting array into Month and get monthly total---------------------------------//
 
 function getMonthlyTotal() {
+    let totalFood = 0;
+    let totalUtilities = 0;
+    let totalHousing = 0;
     let totalTravel = 0;
-    let totalEat = 0;
-    let totalClothes = 0;
+    let totalEntertainment = 0;
+    let totalGrocery = 0;
+    let totalOther = 0;
+
 
     for (let i = 0; i < dailyRecords.length; i++) {
         let daytest = new Date(dailyRecords[i].date);
         if (daytest.getMonth() == new Date().getMonth() + nav && daytest.getFullYear() == new Date().getFullYear()) {
+            totalFood += dailyRecords[i].food;
+            totalUtilities += dailyRecords[i].utilities;
+            totalHousing += dailyRecords[i].housing;
             totalTravel += dailyRecords[i].travel;
-            totalEat += dailyRecords[i].eat;
-            totalClothes += dailyRecords[i].clothes;
-        }
+            totalEntertainment += dailyRecords[i].entertainment;
+            totalGrocery += dailyRecords[i].grocery;
+            totalOther += dailyRecords[i].other;
+        };
     };
+    console.log(`TotalFood $${Number(Math.round(totalFood + 'e2') + 'e-2').toFixed(2)}`);
+    console.log(`TotalUtilities $${Number(Math.round(totalUtilities + 'e2') + 'e-2').toFixed(2)}`);
+    console.log(`TotalHousing $${Number(Math.round(totalHousing + 'e2') + 'e-2').toFixed(2)}`);
     console.log(`TotalTravel $${Number(Math.round(totalTravel + 'e2') + 'e-2').toFixed(2)}`);
-    console.log(`TotalEat $${Number(Math.round(totalEat + 'e2') + 'e-2').toFixed(2)}`);
-    console.log(`TotalClothes $${Number(Math.round(totalClothes + 'e2') + 'e-2').toFixed(2)}`);
+    console.log(`TotalEntertainment $${Number(Math.round(totalEntertainment + 'e2') + 'e-2').toFixed(2)}`);
+    console.log(`TotalGrocery $${Number(Math.round(totalGrocery + 'e2') + 'e-2').toFixed(2)}`);
+    console.log(`TotalOther $${Number(Math.round(totalOther + 'e2') + 'e-2').toFixed(2)}`);
 };
