@@ -16,6 +16,8 @@ const month = `0` + (dt.getMonth() + 1);
 const year = dt.getFullYear();
 const today = `${year}-${month}-${day}`;
 
+console.log(dt);
+
 // Set weekday option to the full word
 const options = { weekday: "long" };
 
@@ -160,7 +162,7 @@ if (!dailyRecords) {
 submitBtn.addEventListener('click', (event) => {
     event.preventDefault();
 
-    handleFormSubmit(today, expenseInputEl, amountInputEl);
+    handleFormSubmit(dt, expenseInputEl, amountInputEl);
     // Clear form
     document.getElementById("form").reset();
 });
