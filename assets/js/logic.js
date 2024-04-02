@@ -144,3 +144,5 @@ document.getElementById('visit-calendar').addEventListener('click', function (ev
     event.preventDefault;
     window.location.href = 'calendar.html';
 });
+
+// Add function to save index.html form data into local storage
