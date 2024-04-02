@@ -48,16 +48,16 @@
             </div>
             <input type="text" id="value-input" class="has-text-grey-darker title is-4 input is-rounded mb-2"
               type="text" placeholder="Amount spent">
+            <div class="modal-footer">
+              <button type="button" class="modal-close is-large" aria-label="close" id="closeBtn"></button>
+              <button type="button" class="button is-link title is-4 my-3" id="saveBtn">Save changes</button>
+            </div>
           </form>
-          <div class="modal-footer">
-            <button type="button" class="modal-close is-large" aria-label="close" id="closeBtn"></button>
-            <button type="button" class="button is-link title is-4 my-3" id="saveBtn">Save changes</button>
-          </div>
         </div>
         <div class="fixed-grid has-3-cols">
           <div id="weather-container" class="grid">
             <div class="my-2">
-              <h3 class="title is-3 has-text-grey-darker">Termperature</h3>
+              <h3 class="title is-3 has-text-grey-darker">Temperature</h3>
               <div class="weather-icon title is-4 has-text-link" id="temp-data"></div>
             </div>
             <div class="my-2">
