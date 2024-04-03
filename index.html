@@ -15,23 +15,26 @@
   <!--jQuery ui stylesheet-->
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
   <!--our own stylesheet-->
-  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/landing.css">
 </head>
 
-<body class="has-text-centered has-background-warning hero is-fullheight">
-  <main class="container hero is-large mt-6">
-    <div class="my-6 has-background-white" id="main-container">
+<body class="has-background-warning">
+
+  <main class="columns is-mobile is-centered has-text-centered p-6">
+    <div class="column is-9 has-background-white" id="main-container">
       <h1 class="title is-1 my-6 has-text-grey-darker" id="date-header"></h1>
       <h2 class="title is-2 my-6 has-text-grey-darker" id="holiday"></h2>
       <div class="container my-6">
+
         <!--Create a button to open modal-->
         <div class="my-6 ">
-          <button class="button is-link is-large js-modal-trigger m-3" id="add-task-btn"
+          <button class="button is-link is-large js-modal-trigger mx-2" id="add-task-btn"
             data-target="modal-container">Add Expenses</button>
-          <button class="button is-link is-light has-text-link-light-invert is-large m-3" id="visit-calendar">Visit
+          <button class="button is-link is-light has-text-link-light-invert is-large mx-2" id="visit-calendar">Visit
             Calendar</button>
         </div>
-        <div class="modal" id="modal-container">
+
+        <!--<div class="modal" id="modal-container">
           <div class="modal-background"></div>
           <form class="modal-content" id="form">
             <div class="select is-rounded mb-2">
@@ -53,7 +56,10 @@
               <button type="button" class="button is-link title is-4 my-3" id="saveBtn">Save changes</button>
             </div>
           </form>
-        </div>
+        </div>-->
+
+
+
         <div class="fixed-grid has-3-cols">
           <div id="weather-container" class="grid">
             <div class="my-2">
@@ -84,7 +90,51 @@
         </div>
       </div>
   </main>
-  <footer class="footer has-background-warning">
+  <!--------------------------Bulma Modal------------------------------------->
+  <div id="modal-container" class="modal">
+    <div class="modal-background" id="modal-background-test"></div>
+    <div id="modalBody" class="modal-content has-background-white box mt-6 p-6">
+      <button id="exitBtnTest" class="button is-link is-light is-pulled-right mb-5">Cancel</button>
+      <form id="form">
+
+        <div class="field">
+          <label id="modalHeader" class="label">Date</label>
+          <p id="modalDateArea"></p>
+        </div>
+
+        <div class="field">
+          <label class="label">Category</label>
+          <div class="control">
+            <div class="select is-fullwidth is-info">
+              <select id="expense-select">
+                <option>Food</option>
+                <option>Utilities</option>
+                <option>Housing</option>
+                <option>Travel</option>
+                <option>Entertainment</option>
+                <option>Grocery</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Amount</label>
+          <div class="control">
+            <input id="value-input" class="input" type="text" placeholder="$">
+          </div>
+        </div>
+
+        <button id="saveBtn" class="button is-link mt-5">Add Log</button>
+      </form>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
+  <!--------------------------This Line above is the hidden modal------->
+
+
+  <footer class="footer has-text-centered has-background-warning">
     <h4 class="title is-4 is-italic has-text-grey-darker mt-auto">Made with ❤️ by The Code Crew</h4>
   </footer>
 
@@ -99,6 +149,7 @@
     integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
   <!--our own JavaScript-->
   <script src="./assets/js/logic.js"></script>
+  <script src="./assets/js/landing.js"></script>
 </body>
 
 </html>

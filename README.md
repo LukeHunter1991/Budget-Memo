@@ -34,18 +34,18 @@ THEN I get taken to a monthly calendar
 
 ## File Structure
 ```md
-budge-memo
+budget-memo
 ├── assets
 │   ├── css
 │   │   ├── calendar.css
+│   │   ├── landing.css
 │   │   └── styles.css
-│   │   
 │   └── js
 │       ├── calendar.js
+│       ├── landing.js
 │       └── logic.js
-│       
-├── index.html
 ├── calendar.html
+├── index.html
 └── README.md
 ```
 
