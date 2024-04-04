@@ -15,12 +15,12 @@
   <!--Bulma style-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
   <!--our own stylesheet-->
-  <link rel="stylesheet" href="./assets/css/calendar.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
 
-  <h1 class="title is-1 my-6 has-text-centered has-text-grey-darker"><a href="./index.html"> Monthly Expense Memo</a>
+  <h1 class="title is-1 my-6 has-text-centered has-text-grey-darker"><a href="./index.html"> Monthly Expsense Memo</a>
   </h1>
 
   <h4 class="title is-4 has-text-centered has-text-grey-darker"> &#128540; Understanding Your lifestyle &#128526;
@@ -35,48 +35,37 @@
       </div>
     </div>
 
-    <!--------------------------Bulma Modal------------------------------------->
-    <div id="modal-test" class="modal">
-      <div class="modal-background" id="modal-background-test"></div>
-      <div id="modalBody" class="modal-content has-background-white box mt-6 p-6">
-        <button id="exitBtnTest" class="button is-link is-light is-pulled-right mb-5">Cancel</button>
-        <form>
-
-          <div class="field">
-            <label id="modalHeader" class="label">Date</label>
-            <p id="modalDateArea"></p>
-          </div>
-
-          <div class="field">
-            <label class="label">Category</label>
-            <div class="control">
-              <div class="select is-fullwidth is-info">
-                <select id="selectOptionTest">
-                  <option>Food</option>
-                  <option>Utilities</option>
-                  <option>Housing</option>
-                  <option>Travel</option>
-                  <option>Entertainment</option>
-                  <option>Grocery</option>
-                  <option>Other</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <div class="field">
-            <label class="label">Amount</label>
-            <div class="control">
-              <input id="amountTest" class="input" type="text" placeholder="$">
-            </div>
-          </div>
-
-          <button id="addBtnTest" class="button is-link mt-5">Add Log</button>
-        </form>
+    <!--hidden modal for test purpose only-->
+    <div id="modal-test" class="mx-auto p-2 w-1/3 rounded-lg border-2 z-10">
+      <div id="modalHeader">
+        <button id="exitBtnTest" class="button">Exit</button>
       </div>
-      <button class="modal-close is-large" aria-label="close"></button>
+      <form id="modalBody">
+        <div>
+          <label>Date</label>
+          <p id="modalDateArea"></p>
+        </div>
+        <div>
+          <label>Category</label>
+          <select id="selectOptionTest">
+            <option>Food</option>
+            <option>Utilities</option>
+            <option>Housing</option>
+            <option>Travel</option>
+            <option>Entertainment</option>
+            <option>Grocery</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div>
+          <label>Amount</label>
+          <input id="amountTest" class="border">
+        </div>
+        <button id="addBtnTest" class="button">Add Log</button>
+      </form>
     </div>
-    <!--------------------------This Line above is the hidden modal-------------------->
+
+
 
     <div class="box p-6 is-pulled-right mt-6 mr-6 has-background-warning">
       <i class="fa-solid fa-utensils"></i>
@@ -120,7 +109,6 @@
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
     integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
   <!--our own JavaScript-->
-  <script src="./assets/js/logic.js"></script>
   <script src="./assets/js/calendar.js"></script>
 </body>
 

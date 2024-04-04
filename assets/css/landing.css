@@ -1,7 +1,90 @@
 #main-container {
-    border-radius: 50px;
+  border-radius: 50px;
 }
 
 #value-input {
-    max-width: 18vw;
+  max-width: 18vw;
+}
+
+body,
+html {
+  font-family: "Open Sans", sans-serif;
+  background-color: #f9f9f9;
+}
+
+#main-container {
+  border-radius: 50px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 2em;
+  background-color: #f9f9f9;
+}
+
+.button.is-link {
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for button */
+}
+
+.button.is-link:hover,
+.button.is-link:focus {
+  background-color: #26547c;
+  color: #f9f9f9;
+}
+
+.modal-content,
+.modal-card {
+  border-radius: 20px;
+}
+
+/* Accessibility: Focus states for interactive elements */
+button:focus,
+a:focus,
+input:focus {
+  outline: 2px solid #26547c; /* Visible focus outline */
+  outline-offset: 2px;
+}
+
+/* Improved form inputs */
+input[type="text"],
+.select select {
+  border: 1px solid #c7ccd0;
+  box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
+}
+
+/* Enhancements for the footer */
+.footer {
+  padding: 2em 1em;
+  background-color: #ffdd57;
+  color: #4a4a4a;
+  font-size: 1.1rem;
+}
+
+/* Toast Container */
+#toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+/* Individual Toast */
+.toast {
+  background-color: #3298dc;
+  color: #f9f9f9;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.5s, transform 0.5s;
+  transform: translateX(100%);
+}
+
+/* Visible State */
+.toast.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fixed-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
 }
