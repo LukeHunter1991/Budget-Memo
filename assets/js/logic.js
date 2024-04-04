@@ -65,9 +65,3 @@ function createToastContainer() {
   return container;
 }
 
-function createToastContainer() {
-  const container = document.createElement("div");
-  container.id = "toast-container";
-  document.body.appendChild(container);
-  return container;
-}
