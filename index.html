@@ -33,33 +33,6 @@
           <button class="button is-link is-light has-text-link-light-invert is-large mx-2" id="visit-calendar">Visit
             Calendar</button>
         </div>
-
-        <!--<div class="modal" id="modal-container">
-          <div class="modal-background"></div>
-          <form class="modal-content" id="form">
-            <div class="select is-rounded mb-2">
-              <select class="has-text-grey-darker title is-4" type="select" id="expense-select" name="expense-select"
-                autofocus required>
-                <option id="food" value="food">Food</option>
-                <option id="utilities" value="utilities">Utilities</option>
-                <option id="travel" value="travel">Travel</option>
-                <option id="housing" value="housing">Housing</option>
-                <option id="entertainment" value="entertainment">Entertainment</option>
-                <option id="groceries" value="groceries">Groceries</option>
-                <option id="other" value="other">Other</option>
-              </select>
-            </div>
-            <input type="text" id="value-input" class="has-text-grey-darker title is-4 input is-rounded mb-2"
-              type="text" placeholder="Amount spent">
-            <div class="modal-footer">
-              <button type="button" class="modal-close is-large" aria-label="close" id="closeBtn"></button>
-              <button type="button" class="button is-link title is-4 my-3" id="saveBtn">Save changes</button>
-            </div>
-          </form>
-        </div>-->
-
-
-
         <div class="fixed-grid has-3-cols">
           <div id="weather-container" class="grid">
             <div class="my-2">
@@ -90,43 +63,47 @@
           </div>
         </div>
       </div>
+      <!--Button to update weather data-->
+      <div class="my-6 ">
+        <button class="button is-info is-large" id="update-weather-btn">Update Weather</button>
+      </div>
   </main>
   <!--------------------------Bulma Modal------------------------------------->
   <div id="modal-container" class="modal">
     <div class="modal-background" id="modal-background-test"></div>
     <div id="modalBody" class="modal-content has-background-white box mt-6 p-6">
-      <button id="exitBtnTest" class="button is-link is-light is-pulled-right mb-5">Cancel</button>
       <form id="form">
-
         <div class="field">
           <label id="modalHeader" class="label">Date</label>
           <p id="modalDateArea"></p>
         </div>
 
-        <div class="field">
-          <label class="label">Category</label>
-          <div class="control">
-            <div class="select is-fullwidth is-info">
-              <select id="expense-select">
-                <option>Food</option>
-                <option>Utilities</option>
-                <option>Housing</option>
-                <option>Travel</option>
-                <option>Entertainment</option>
-                <option>Grocery</option>
-                <option>Other</option>
-              </select>
+        <div class="fixed-grid has-2-cols">
+          <div class="grid">
+            <div class="field">
+              <label class="label is-col-min-1">Category</label>
+              <div class="control">
+                <div class="select is-fullwidth is-info">
+                  <select id="expense-select">
+                    <option>Food</option>
+                    <option>Utilities</option>
+                    <option>Housing</option>
+                    <option>Travel</option>
+                    <option>Entertainment</option>
+                    <option>Grocery</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <label class="label is-col-min-1">Amount</label>
+              <div class="control">
+                <input id="value-input" class="input" type="text" placeholder="$">
+              </div>
             </div>
           </div>
         </div>
-
-        <div class="field">
-          <label class="label">Amount</label>
-          <div class="control">
-            <input id="value-input" class="input" type="text" placeholder="$">
-          </div>
-        </div>
-
         <button id="saveBtn" class="button is-link mt-5">Add Log</button>
       </form>
     </div>
