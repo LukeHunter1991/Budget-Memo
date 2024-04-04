@@ -25,13 +25,6 @@ const year = dt.getFullYear();
 const today = `${year}-${month}-${day}`;
 console.log(today);
 
-// Set weekday option to the full word
-const options = { weekday: "long" };
-
-// Add day + date heading to index.html
-dateEl.textContent =
-  new Intl.DateTimeFormat("en-US", options).format(dt) + " " + today;
-
 function displayCalendar() {
   fetch(
     "https://calendarific.com/api/v2/holidays?&api_key=tBQTyKzId08JrbiEdpq5IvkSIOhdkv4h&country=AU&year=2024"
