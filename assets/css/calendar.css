@@ -1,39 +1,39 @@
 /*--------------------------------*/
 #calendar {
-    width: 700px;
-    min-width: 700px;
-    float: left;
+  width: 700px;
+  min-width: 700px;
+  float: left;
 }
 
 .weekday-title {
-    width: 100px;
-    height: 30px;
+  width: 100px;
+  height: 30px;
 }
 
 .day {
-    width: 100px;
-    height: 100px;
-    border: 0.5px solid black;
+  width: 100px;
+  height: 100px;
+  border: 0.5px solid black;
 }
 
 #todayCube {
-    background-color: bisque;
+  background-color: bisque;
 }
 
 .actual:hover {
-    background-color: #ffc107;
+  background-color: #ffc107;
 }
 
 #todayCube:hover {
-    background-color: #ffc107;
+  background-color: #ffc107;
 }
 
 #day-display {
-    font-size: 96px;
+  font-size: 96px;
 }
 
 #modal-test {
-    display: none;
+  display: none;
 }
 
 /*-----------------------------*/
