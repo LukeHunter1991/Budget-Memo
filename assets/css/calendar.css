@@ -28,9 +28,33 @@
   background-color: #ffc107;
 }
 
-#day-display {
-  font-size: 96px;
+.logRecord {
+  font-size: 8px;
+  background-color: lavender;
+  width: 76px;
+  z-index: 6;
+  position: relative;
+  left: 20px;
+  top: -22px;
+  padding-left: 5px;
+  border-radius: 5px;
+  display: none;
 }
+
+.logDivBtn {
+  position: relative;
+  left: 60px;
+  display: inline;
+}
+
+.logDivBtn:hover {
+  color: red;
+  transform: scale(1.5);
+}
+
+/*#day-display {
+  font-size: 96px;
+}*/
 
 #modal-test {
   display: none;
