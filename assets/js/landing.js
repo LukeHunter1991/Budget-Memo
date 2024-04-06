@@ -1,5 +1,6 @@
 const holidayElement = document.getElementById("holiday");
 const dateEl = document.getElementById("date-header");
+const locationHeader = document.getElementById("current-location");
 
 const submitBtn = document.getElementById("saveBtn");
 const expenseInputEl = document.getElementById("expense-select");
@@ -27,7 +28,7 @@ console.log(today);
 
 function displayCalendar() {
   fetch(
-    "https://calendarific.com/api/v2/holidays?&api_key=tBQTyKzId08JrbiEdpq5IvkSIOhdkv4h&country=AU&year=2024"
+    "https://calendarific.com/api/v2/holidays?&api_key=ofmNijWbDefyYA0QvtuDw8NXhyjOOlBL&country=AU&year=2024"
   )
     .then(function (response) {
       return response.json();
@@ -48,7 +49,19 @@ function displayCalendar() {
     });
 }
 
-function displayWeatherInformation() {
+function updateUserWeather() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { latitude, longitude } = position.coords;
+      displayWeatherInformation(latitude, longitude);
+    });
+  } else {
+    console.log("Geolocation is not supported by this browser.");
+    displayWeatherInformation(); // Default to Melbourne if not supported
+  }
+}
+
+function displayWeatherInformation(lat = -37.8, lon = 144.9) {
   const temp = document.getElementById("temp-data");
   const feelLike = document.getElementById("feels-like-data");
   const wind = document.getElementById("wind-data");
@@ -57,7 +70,7 @@ function displayWeatherInformation() {
   const rainChance = document.getElementById("rain-data");
 
   fetch(
-    "https://api.openweathermap.org/data/2.5/weather?lat=-37.8&lon=144.9&units=metric&appid=c99e09d6cb92d5d017461b58e28e5857"
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=c99e09d6cb92d5d017461b58e28e5857`
   )
     .then(function (response) {
       return response.json();
@@ -88,6 +101,10 @@ function displayWeatherInformation() {
       // Update weather conditions
       if (condition) {
         condition.textContent = `${data.weather[0].main}`;
+      }
+
+      if (locationHeader) {
+        locationHeader.textContent = `Current Location: ${data.name}`;
       }
 
       // Update chance of rain
@@ -206,3 +223,9 @@ addLogBtnEl.addEventListener("click", (event) => {
   // Clear form
   document.getElementById("form").reset();
 });
+
+document
+  .getElementById("update-weather-btn")
+  .addEventListener("click", function () {
+    updateUserWeather();
+  });
