@@ -25,30 +25,42 @@ const year = dt.getFullYear();
 const today = `${year}-${month}-${day}`;
 console.log(today);
 
-function displayCalendar() {
-  fetch(
-    "https://calendarific.com/api/v2/holidays?&api_key=tBQTyKzId08JrbiEdpq5IvkSIOhdkv4h&country=AU&year=2024"
-  )
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-      const holidays = data.response.holidays;
-      const todayHoliday = holidays.filter(
-        (holiday) => holiday.date.iso === today
-      );
+// function displayCalendar() {
+//   fetch(
+//     "https://calendarific.com/api/v2/holidays?&api_key=tBQTyKzId08JrbiEdpq5IvkSIOhdkv4h&country=AU&year=2024"
+//   )
+//     .then(function (response) {
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       console.log(data);
+//       const holidays = data.response.holidays;
+//       const todayHoliday = holidays.filter(
+//         (holiday) => holiday.date.iso === today
+//       );
 
-      if (todayHoliday.length > 0) {
-        const holidayToday = todayHoliday[0];
-        holidayElement.textContent = holidayToday.name;
-      } else {
-        holidayElement.textContent = "No holidays today";
-      }
+//       if (todayHoliday.length > 0) {
+//         const holidayToday = todayHoliday[0];
+//         holidayElement.textContent = holidayToday.name;
+//       } else {
+//         holidayElement.textContent = "No holidays today";
+//       }
+//     });
+// }
+
+function updateUserWeather() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { latitude, longitude } = position.coords;
+      displayWeatherInformation(latitude, longitude);
     });
+  } else {
+    console.log("Geolocation is not supported by this browser.");
+    displayWeatherInformation(); // Default to Melbourne if not supported
+  }
 }
 
-function displayWeatherInformation() {
+function displayWeatherInformation(lat = 21, lon = 21) {
   const temp = document.getElementById("temp-data");
   const feelLike = document.getElementById("feels-like-data");
   const wind = document.getElementById("wind-data");
@@ -57,7 +69,7 @@ function displayWeatherInformation() {
   const rainChance = document.getElementById("rain-data");
 
   fetch(
-    "https://api.openweathermap.org/data/2.5/weather?lat=-37.8&lon=144.9&units=metric&appid=c99e09d6cb92d5d017461b58e28e5857"
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=c99e09d6cb92d5d017461b58e28e5857`
   )
     .then(function (response) {
       return response.json();
@@ -99,7 +111,7 @@ function displayWeatherInformation() {
       }
       if (condition && data.weather.length > 0) {
         const iconCode = data.weather[0].icon;
-        const iconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`;
+        const iconUrl = `https://openweathermap.org/img/wn/${iconCode}.png`;
         document.getElementById("weather-icon").src = iconUrl;
         condition.textContent = `${data.weather[0].main}`;
       }
@@ -126,10 +138,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (storedIconUrl) {
       document.getElementById("weather-icon").src = storedIconUrl;
     }
-
-    // Initalise weather and calendar function
-    displayCalendar();
-    displayWeatherInformation();
   }
 
   // Add a click event on buttons to open a specific modal
@@ -168,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-displayCalendar();
+//displayCalendar();
 displayWeatherInformation();
 
 document
@@ -206,3 +214,9 @@ addLogBtnEl.addEventListener("click", (event) => {
   // Clear form
   document.getElementById("form").reset();
 });
+
+document
+  .getElementById("update-weather-btn")
+  .addEventListener("click", function () {
+    updateUserWeather();
+  });
