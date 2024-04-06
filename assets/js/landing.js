@@ -25,28 +25,28 @@ const year = dt.getFullYear();
 const today = `${year}-${month}-${day}`;
 console.log(today);
 
-// function displayCalendar() {
-//   fetch(
-//     "https://calendarific.com/api/v2/holidays?&api_key=tBQTyKzId08JrbiEdpq5IvkSIOhdkv4h&country=AU&year=2024"
-//   )
-//     .then(function (response) {
-//       return response.json();
-//     })
-//     .then(function (data) {
-//       console.log(data);
-//       const holidays = data.response.holidays;
-//       const todayHoliday = holidays.filter(
-//         (holiday) => holiday.date.iso === today
-//       );
+function displayCalendar() {
+  fetch(
+    "https://calendarific.com/api/v2/holidays?&api_key=ofmNijWbDefyYA0QvtuDw8NXhyjOOlBL&country=AU&year=2024"
+  )
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+      const holidays = data.response.holidays;
+      const todayHoliday = holidays.filter(
+        (holiday) => holiday.date.iso === today
+      );
 
-//       if (todayHoliday.length > 0) {
-//         const holidayToday = todayHoliday[0];
-//         holidayElement.textContent = holidayToday.name;
-//       } else {
-//         holidayElement.textContent = "No holidays today";
-//       }
-//     });
-// }
+      if (todayHoliday.length > 0) {
+        const holidayToday = todayHoliday[0];
+        holidayElement.textContent = holidayToday.name;
+      } else {
+        holidayElement.textContent = "No holidays today";
+      }
+    });
+}
 
 function updateUserWeather() {
   if (navigator.geolocation) {
@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-//displayCalendar();
+displayCalendar();
 displayWeatherInformation();
 
 document
