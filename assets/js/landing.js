@@ -244,5 +244,14 @@ document
   });
 
 
+//------------------add eventListener to buttons for styling----------------------------------//
 document.getElementById('change-theme').addEventListener("click", changeTheme);
 
+(document.querySelectorAll(".icon") || []).forEach(($icon) => {
+  $icon.addEventListener('mouseover', function () {
+    $icon.classList.add('has-background-info-light');
+  })
+  $icon.addEventListener('mouseout', function () {
+    $icon.classList.remove('has-background-info-light');
+  })
+});
