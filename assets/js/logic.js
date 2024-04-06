@@ -3,7 +3,7 @@ function handleFormSubmit(date) {
   const category = selectEl.value.toString().toLowerCase();
   const amount = parseFloat(amountEl.value); //convert input string to number
   //make sure the amount input is positive
-  if (amount >= 0 === true) {
+  if (amount > 0 === true) {
     let existingdayObj = dailyRecords.find((e) => e.date === selectedDate);
     if (existingdayObj !== undefined) {
       existingdayObj[category] = amount;
