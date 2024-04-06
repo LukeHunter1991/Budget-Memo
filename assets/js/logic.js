@@ -69,9 +69,7 @@ function changeTheme() {
   if (mode === 'light') {
     mode = 'dark';
     localStorage.setItem('mode', mode);
-
-
-
+    console.log(`Mode: ${mode}`);
     (document.querySelectorAll(".box") || []).forEach(($box) => {
       $box.classList.add('theme-dark');
     });
@@ -79,6 +77,7 @@ function changeTheme() {
   } else {
     mode = 'light';
     localStorage.setItem('mode', mode);
+    console.log(`Mode: ${mode}`);
     (document.querySelectorAll(".box") || []).forEach(($box) => {
       $box.classList.remove('theme-dark');
       document.body.style.backgroundImage = 'conic-gradient(from 90deg, #7d8be0, white, #FFF9F0, #d5edf8, #abcdde, #7d8be0)';
@@ -90,16 +89,14 @@ function renderLastMode() {
   const initialMode = localStorage.getItem('mode');
   if (initialMode !== null) {
     console.log(initialMode);
-
-
     if (initialMode === 'dark') {
+      console.log(`Mode: ${initialMode}`);
       (document.querySelectorAll(".box") || []).forEach(($box) => {
         $box.classList.add('theme-dark');
-
       });
-
       document.body.style.background = "black";
     } else {
+      console.log(`Mode: ${initialMode}`);
       document.body.style.backgroundImage = 'conic-gradient(from 90deg, #7d8be0, white, #FFF9F0, #d5edf8, #abcdde, #7d8be0)';
     }
   }
