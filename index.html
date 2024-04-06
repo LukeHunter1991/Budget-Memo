@@ -8,7 +8,9 @@
   <!--Bulma-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
   <!--fonts-->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
   <!--fontawesome-->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
@@ -18,117 +20,170 @@
   <link rel="stylesheet" href="./assets/css/landing.css">
 </head>
 
-<body class="has-background-warning">
-
-  <main class="columns is-mobile is-centered has-text-centered p-6">
+<body class="p-6">
+  <div class="column is-6 mx-auto box mb-5" id="frame">
+    <!-- <main class="columns is-mobile is-centered has-text-centered p-6">
     <div class="column is-9 has-background-white" id="main-container">
       <h1 class="title is-1 my-6 has-text-grey-darker" id="date-header"></h1>
       <h2 class="title is-2 my-6 has-text-grey-darker" id="holiday"></h2>
-      <div class="container my-6">
+      <div class="container my-6"> -->
 
-        <!--Create a button to open modal-->
-        <div class="my-6 ">
-          <button class="button is-link is-large js-modal-trigger mx-2" id="add-task-btn"
-            data-target="modal-container">Add Expenses</button>
-          <button class="button is-link is-light has-text-link-light-invert is-large mx-2" id="visit-calendar">Visit
-            Calendar</button>
+    <!--Create a button to open modal-->
+    <!-- <div class="my-6 ">
+           <button class="button is-link is-large js-modal-trigger mx-2" id="add-task-btn"
+            data-target="modal-container">Add Expenses</button> -->
+    <!-- <button class="button is-link is-light has-text-link-light-invert is-large mx-2" id="visit-calendar">Visit
+            Calendar</button> 
+        </div> -->
+    <div class="box ">
+      <h5 class="is-size-5 has-text-left is-uppercase has-text-weight-medium mb-3">Button</h5>
+      <div class="is-flex is-flex-direction-row is-flex-wrap-nowrap is-justify-content-space-around">
+        <div class="tooltip"><span class="button icon p-6 is-size-1 has-text-text-40" id="update-weather-btn">
+            <i class="fas fa-globe"></i>
+          </span>
+
+
+          <span id="current-location" class="tooltiptext">Tooltip text</span>
+
+
+          <p class="has-text-centered is-size-6 p-2">Location</p>
         </div>
-        <h3 id="current-location"></h3>
-        <div class="fixed-grid has-3-cols">
-          <div id="weather-container" class="grid">
-            <div class="my-2">
-              <h3 class="title is-3 has-text-grey-darker">Temperature</h3>
-              <div class="weather-icon title is-4 has-text-link" id="temp-data"></div>
-            </div>
-            <div class="my-2">
-              <h3 class="title is-3 has-text-grey-darker">Wind</h3>
-              <div class="weather-icon title is-4 has-text-link" id="wind-data"></div>
-            </div>
-            <div class="my-2">
-              <h3 class="title is-3 has-text-grey-darker">Humidity</h3>
-              <div class="weather-icon title is-4 has-text-link" id="humidity-data"></div>
-            </div>
-            <div class="my-2">
-              <h3 class="title is-3 has-text-grey-darker">Feels Like</h3>
-              <div class="weather-icon title is-4 has-text-link" id="feels-like-data"></div>
-            </div>
-            <div class="my-2">
-              <h3 class="title is-3 has-text-grey-darker">Chance of Rain</h3>
-              <div class="weather-icon title is-4 has-text-link" id="rain-data"></div>
-            </div>
-            <div class="my-2">
-              <h3 class="title is-3 has-text-grey-darker">Condition</h3>
-              <div class="weather-icon title is-4 has-text-link" id="conditions"></div>
-              <img id="weather-icon" src="" alt="Weather Icon">
-            </div>
+        <div><span class="button icon p-6 is-size-1 has-text-text-40" id="change-theme">
+            <i class="fas fa-palette"></i>
+          </span>
+          <p class="has-text-centered is-size-6 p-2">Theme</p>
+        </div>
+        <div><span class="button icon p-6 is-size-1 has-text-text-40" id="visit-calendar">
+            <i class="fas fa-calendar"></i>
+          </span>
+          <p class="has-text-centered is-size-6 p-2">Calendar</p>
+        </div>
+        <div><span class="button js-modal-trigger icon p-6 is-size-1 has-text-text-40" id="add-task-btn"
+            data-target="modal-container">
+            <i class="fas fa-pen"></i>
+          </span>
+          <p class="has-text-centered is-size-6 p-2">Add</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="box ">
+      <h5 class="is-size-5 has-text-left is-uppercase has-text-weight-medium mb-3">today</h5>
+      <div class="column is-6 is-offet-3 mx-auto fixed-grid has-2-cols">
+        <div class="grid">
+          <div class="cell is-row-span-2 has-text-right" id="todayDate"></div>
+          <div class="cell has-text-right" id="todayWeek"></div>
+          <div class="cell has-text-right" id="todayMonthYr"></div>
+          <div class="cell is-col-span-2 is-size-4 has-text-centered mt-6" id="holiday">
           </div>
         </div>
       </div>
-      <!--Button to update weather data-->
-      <div class="my-6 ">
-        <button class="button is-info is-large" id="update-weather-btn">Update Weather</button>
-      </div>
-  </main>
-  <!--------------------------Bulma Modal------------------------------------->
-  <div id="modal-container" class="modal">
-    <div class="modal-background" id="modal-background-test"></div>
-    <div id="modalBody" class="modal-content has-background-white box mt-6 p-6">
-      <form id="form">
-        <div class="field">
-          <label id="modalHeader" class="label">Date</label>
-          <p id="modalDateArea"></p>
+    </div>
+
+    <div class="box">
+      <h5 class="is-size-5 has-text-left is-uppercase has-text-weight-medium mb-3">weather</h5>
+      <div id="weather-container" class="columns">
+
+        <div class="column my-2 is-flex is-flex-direction-column is-justify-content-space-between">
+          <h3 class="has-text-grey">Temperature</h3>
+          <div class="weather-icon  is-size-2 has-text-link" id="temp-data"></div>
         </div>
 
-        <div class="fixed-grid has-2-cols">
-          <div class="grid">
-            <div class="field">
-              <label class="label is-col-min-1">Category</label>
-              <div class="control">
-                <div class="select is-fullwidth is-info">
-                  <select id="expense-select">
-                    <option>Food</option>
-                    <option>Utilities</option>
-                    <option>Housing</option>
-                    <option>Travel</option>
-                    <option>Entertainment</option>
-                    <option>Grocery</option>
-                    <option>Other</option>
-                  </select>
+        <div class="column my-2 is-flex is-flex-direction-column is-justify-content-space-between">
+          <h3 class="has-text-grey">Wind</h3>
+          <div class="weather-icon has-text-link" id="wind-data"></div>
+        </div>
+
+        <div class="column my-2 is-flex is-flex-direction-column is-justify-content-space-between">
+          <h3 class="has-text-grey">Humidity</h3>
+          <div class="weather-icon  has-text-link" id="humidity-data"></div>
+        </div>
+
+        <div class="column my-2 is-flex is-flex-direction-column is-justify-content-space-between">
+          <h3 class=" has-text-grey">Feels Like</h3>
+          <div class="weather-icon has-text-link" id="feels-like-data"></div>
+        </div>
+
+        <div class="column my-2 is-flex is-flex-direction-column is-justify-content-space-between">
+          <h3 class="has-text-grey">Chance of Rain</h3>
+          <div class="weather-icon  has-text-link" id="rain-data"></div>
+        </div>
+
+        <div class="column my-2 is-flex is-flex-direction-column is-justify-content-space-between">
+          <h3 class="has-text-grey">Condition</h3>
+          <img id="weather-icon" src="" alt="Weather Icon">
+          <div class="weather-icon has-text-link" id="conditions"></div>
+
+        </div>
+
+      </div>
+    </div>
+    <!-- </div> -->
+    <!--Button to update weather data-->
+    <!-- <div class="my-6 ">
+        <button class="button is-info is-large" id="update-weather-btn">Update Weather</button>
+      </div> -->
+    <!-- </main> -->
+    <!--------------------------->
+
+
+    <!--------------------------Bulma Modal------------------------------------->
+    <div id="modal-container" class="modal ">
+      <div class="modal-background" id="modal-background-test"></div>
+      <div id="modalBody" class="modal-content has-background-white box mt-6 p-6">
+        <form id="form" class="has-text-grey">
+          <div class="field">
+            <label id="modalHeader" class="has-text-grey label">Date</label>
+            <p id="modalDateArea"></p>
+          </div>
+
+          <div class="fixed-grid has-2-cols">
+            <div class="grid">
+              <div class="field">
+                <label class="label has-text-grey is-col-min-1">Category</label>
+                <div class="control">
+                  <div class="select is-fullwidth is-info ">
+                    <select class="has-background-info" id="expense-select">
+                      <option>Food</option>
+                      <option>Utilities</option>
+                      <option>Housing</option>
+                      <option>Travel</option>
+                      <option>Entertainment</option>
+                      <option>Grocery</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="field">
+                <label class="label has-text-grey is-col-min-1">Amount</label>
+                <div class="control">
+                  <input id="value-input" class="input has-background-info" type="text" placeholder="$">
                 </div>
               </div>
             </div>
-            <div class="field">
-              <label class="label is-col-min-1">Amount</label>
-              <div class="control">
-                <input id="value-input" class="input" type="text" placeholder="$">
-              </div>
-            </div>
           </div>
-        </div>
-        <button id="saveBtn" class="button is-link mt-5">Add Log</button>
-      </form>
+          <button id="saveBtn" class="button is-link mt-5">Add Log</button>
+        </form>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
     </div>
-    <button class="modal-close is-large" aria-label="close"></button>
-  </div>
-  <!--------------------------This Line above is the hidden modal------->
+    <!--------------------------This Line above is the hidden modal------->
 
 
-  <footer class="footer has-text-centered has-background-warning">
-    <h4 class="title is-4 is-italic has-text-grey-darker mt-auto">Made with ❤️ by The Code Crew</h4>
-  </footer>
 
-  <!--jQuery JavaScript-->
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <!--jQuery ui JavaScript-->
-  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
-  <!--fontawesome-->
-  <script src="https://kit.fontawesome.com/4ca36e5657.js" crossorigin="anonymous"></script>
-  <!--Dayjs JavaScript-->
-  <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
-    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
-  <!--our own JavaScript-->
-  <script src="./assets/js/logic.js"></script>
-  <script src="./assets/js/landing.js"></script>
+    <!--jQuery JavaScript-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!--jQuery ui JavaScript-->
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+    <!--fontawesome-->
+    <script src="https://kit.fontawesome.com/4ca36e5657.js" crossorigin="anonymous"></script>
+    <!--Dayjs JavaScript-->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
+    <!--our own JavaScript-->
+    <script src="./assets/js/logic.js"></script>
+    <script src="./assets/js/landing.js"></script>
 </body>
 
 </html>

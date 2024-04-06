@@ -20,17 +20,18 @@ As a household I want to track my spending so that I don’t go broke.
 WHEN I open the webpage 
 THEN I see today's date, weather, and if it’s a public holiday
 
-WHEN I click on a record 
+WHEN I click on a button 
 THEN I have a form where I can submit my daily spending
-
-WHEN I look at the main page 
-THEN I can see how much I have spent each day
-
-WHEN I look at the main page 
-THEN I can see my total spent for the month.
 
 WHEN I add the spending for the day 
 THEN I get taken to a monthly calendar
+
+WHEN I look at the monthly calendar page 
+THEN I can see how much I have spent each day
+
+WHEN I look at the monthly calendar page 
+THEN I can see my total spent for the month
+
 
 ## File Structure
 ```md

@@ -24,8 +24,6 @@ function handleFormSubmit(date) {
     }
     console.log(dailyRecords);
     localStorage.setItem("logs", JSON.stringify(dailyRecords));
-    //call function to calculate monthly total
-    //getMonthlyTotal();
   } else {
     window.alert("please type in valid number");
   }
@@ -65,3 +63,45 @@ function createToastContainer() {
   return container;
 }
 
+let mode = 'light';
+function changeTheme() {
+
+  if (mode === 'light') {
+    mode = 'dark';
+    localStorage.setItem('mode', mode);
+
+
+
+    (document.querySelectorAll(".box") || []).forEach(($box) => {
+      $box.classList.add('theme-dark');
+    });
+    document.body.style.background = "black";
+  } else {
+    mode = 'light';
+    localStorage.setItem('mode', mode);
+    (document.querySelectorAll(".box") || []).forEach(($box) => {
+      $box.classList.remove('theme-dark');
+      document.body.style.backgroundImage = 'conic-gradient(from 90deg, #7d8be0, white, #FFF9F0, #d5edf8, #abcdde, #7d8be0)';
+    });
+  }
+}
+//Render last saved mode option
+function renderLastMode() {
+  const initialMode = localStorage.getItem('mode');
+  if (initialMode !== null) {
+    console.log(initialMode);
+
+
+    if (initialMode === 'dark') {
+      (document.querySelectorAll(".box") || []).forEach(($box) => {
+        $box.classList.add('theme-dark');
+
+      });
+
+      document.body.style.background = "black";
+    } else {
+      document.body.style.backgroundImage = 'conic-gradient(from 90deg, #7d8be0, white, #FFF9F0, #d5edf8, #abcdde, #7d8be0)';
+    }
+  }
+};
+renderLastMode();
