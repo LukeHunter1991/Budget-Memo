@@ -65,6 +65,20 @@ On calendar.html the right panel shows your monthly exspenses for each category 
 
 ![Screenshot 2](./assets/images/Screenshot_calendar.html.png)
 
+## Technologies Used
+HTML
+
+CSS
+
+javaScript
+
+jQuery
+
+Bulma
+
+Google Fonts
+
+
 ## Credits
 
 Brian Brady https://github.com/bbrady00
