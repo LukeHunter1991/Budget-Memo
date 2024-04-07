@@ -69,6 +69,7 @@ function loadCalendar() {
 
         const logDiv = document.createElement('div');
         logDiv.setAttribute('class', 'logRecord');
+        logDiv.classList.add('has-text-link');
         const button = document.createElement('button');
         button.setAttribute('class', 'logDivBtn');
         button.textContent = 'x';
@@ -215,6 +216,11 @@ function closeModal() {
   document.getElementById("amountTest").textContent = "";
 }
 exitBtnEl.addEventListener("click", closeModal);
+document.getElementById('closeBulmaModalBtn').addEventListener("click", closeModal);
+
+
+//document.getElementById('change-theme').addEventListener("click", changeTheme);
+
 
 //-----------------this line below is about sorting array into Month and get monthly total---------------------------------//
 

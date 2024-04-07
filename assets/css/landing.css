@@ -1,42 +1,59 @@
-#value-input {
-  max-width: 18vw;
+body {
+  min-height: 100vh;
+  background-image: conic-gradient(from 90deg, #7d8be0, white, #FFF9F0, #d5edf8, #abcdde, #7d8be0);
+
 }
 
-body,
-html {
-  font-family: "Open Sans", sans-serif;
-  background-color: #f9f9f9;
-  background-image: conic-gradient(
-    from 45deg,
-    #7d8be0,
-    #ffffff,
-    #fff9f0,
-    #d5edf8,
-    #abcdde,
-    #7d8be0
-  );
-  color: #363636;
+#todayDate {
+  font-size: 110px;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 0%;
+  position: relative;
+  top: 20px;
+  left: 50px;
 }
 
-#main-container {
-  border-radius: 50px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 2em;
-  background-color: #f9f9f9;
-  max-width: 90vw;
-  margin: auto;
+
+#frame {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid white;
+  box-shadow: 0 4px 8px 0 rgba(128, 128, 128, 0.2), 0 6px 20px 0 rgba(128, 128, 128, 0.19);
 }
 
-.button.is-link {
-  transition: background-color 0.3s, color 0.3s; /* Smooth transition for button */
+/*-Tooltip showing current location of user choice------*/
+.tooltip {
+  position: relative;
+  display: inline-block;
 }
 
-.button.is-link:hover,
-.button.is-link:focus {
-  background-color: #26547c;
-  color: #f9f9f9;
+.tooltip .tooltiptext {
+  font-size: x-small;
+  visibility: hidden;
+  width: 120px;
+  background-color: lightskyblue;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 95%;
+  left: 50%;
+  margin-left: -60px;
 }
 
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+
+
+
+/*-------------------------------------*/
 .modal-content,
 .modal-card {
   border-radius: 20px;
@@ -57,21 +74,7 @@ input[type="text"],
   box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
 }
 
-/* Enhancements for the footer */
-.footer {
-  padding: 2em 1em;
-  background-image: conic-gradient(
-    from 45deg,
-    #7d8be0,
-    #ffffff,
-    #fff9f0,
-    #d5edf8,
-    #abcdde,
-    #7d8be0
-  );
-  color: #4a4a4a;
-  font-size: 1.1rem;
-}
+
 
 /* Toast Container */
 #toast-container {
@@ -107,16 +110,21 @@ input[type="text"],
 
 /* Responsive Design Adjustments */
 @media (max-width: 768px) {
+
   /* Tablet and down */
   #value-input {
-    max-width: 40vw; /* Increase for smaller screens */
+    max-width: 40vw;
+    /* Increase for smaller screens */
   }
 
   .footer {
-    font-size: 0.9rem; /* Adjust font size for smaller screens */
+    font-size: 0.9rem;
+    /* Adjust font size for smaller screens */
   }
 }
+
 @media (max-width: 480px) {
+
   /* Mobile */
   #main-container,
   .modal-content,

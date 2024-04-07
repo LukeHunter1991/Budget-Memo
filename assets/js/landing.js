@@ -1,5 +1,5 @@
 const holidayElement = document.getElementById("holiday");
-const dateEl = document.getElementById("date-header");
+// const dateEl = document.getElementById("date-header");
 const locationHeader = document.getElementById("current-location");
 
 const submitBtn = document.getElementById("saveBtn");
@@ -15,7 +15,7 @@ function formatDate() {
     day: "2-digit",
   };
   const todayFormatted = new Intl.DateTimeFormat("en-US", options).format(dt);
-  dateEl.textContent = todayFormatted;
+  // dateEl.textContent = todayFormatted;
   return dt;
 }
 // Set weekday option to the full word
@@ -25,6 +25,19 @@ const month = (dt.getMonth() + 1).toString().padStart(2, "0");
 const year = dt.getFullYear();
 const today = `${year}-${month}-${day}`;
 console.log(today);
+
+//------------------------------------------------------//
+const displayDayStr = day;
+const displayMonthYrStr = `${dt.toLocaleDateString('en-au', { month: 'short' })} ${year}`;
+const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+let displayWeekStr = weekdays[dt.getDay()];
+const todayDateEl = document.getElementById('todayDate');
+const todayWeekEl = document.getElementById('todayWeek');
+const todayMonthYrEl = document.getElementById('todayMonthYr');
+todayDateEl.textContent = displayDayStr;
+todayWeekEl.textContent = displayWeekStr;
+todayMonthYrEl.textContent = displayMonthYrStr;
+//------------------------------------------------------//
 
 function displayCalendar() {
   fetch(
@@ -229,3 +242,6 @@ document
   .addEventListener("click", function () {
     updateUserWeather();
   });
+
+
+document.getElementById('change-theme').addEventListener("click", changeTheme);
