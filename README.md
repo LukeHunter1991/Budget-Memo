@@ -3,13 +3,8 @@
 ## Introduction
 
 This application is a monthly budget tracker that also tracks weather and public holidays.
-(Stretch target of a currency converter).It retrieves data from third-party APIs https://openweathermap.org and https://calendarific.com, and displays data with dynamically updated HTML and CSS.
+It retrieves data from third-party APIs https://openweathermap.org and https://calendarific.com, and displays data with dynamically updated HTML and CSS.
 
-## Mock-Up
-
-The following image shows the web application's appearance and functionality:
-
-![The monthly budget memo app includes a input modal, a calendar displaying spending for each day, a display div for total amount.](./assets/?.png)
 
 ## User Story
 
@@ -39,8 +34,8 @@ budget-memo
 ├── assets
 │   ├── css
 │   │   ├── calendar.css
-│   │   ├── landing.css
-│   │   └── styles.css
+│   │   └── landing.css
+│   │
 │   └── js
 │       ├── calendar.js
 │       ├── landing.js
@@ -55,3 +50,27 @@ budget-memo
 * The URL of the deployed application:  https://lukehunter1991.github.io/Budget-Memo/
 
 * The URL of the GitHub repository: https://github.com/LukeHunter1991/Budget-Memo
+
+
+## Usage
+
+Starting with the landing page, to get accurate weather data you will need to click the location buttion. Your browser will ask your permission to use your location. If you accept, the weather data will automatically update. You can swap between light/dark mode by clicking the theme button. The theme is saved to local storage and is persistent between the pages.
+
+To add your exspenses for today you can click the add button to open the modal. You can select a category and input an amount. Click the 'Add Log' button to save each record. To see your monthly totals and your monthly calendar you can click the 'Calendar' button to be redirected.
+
+On calendar.html the right panel shows your monthly exspenses for each category along with you can see your expenses that have been added for each day by hovering on the relevant days section on the calendar. You can clear existing exspense records or add exspense records for specific days using the calendar.
+
+![Screenshot 1](./assets/images/Screenshot_index.html.png)
+
+
+![Screenshot 2](./assets/images/Screenshot_calendar.html.png)
+
+## Credits
+
+Brian Brady https://github.com/bbrady00
+
+Luke Hunter https://github.com/LukeHunter1991
+
+Melody Yan https://github.com/MelodyYan96
+
+Shuying Zhou https://github.com/Saraz-Git

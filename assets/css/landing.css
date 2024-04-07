@@ -50,7 +50,9 @@ body {
   visibility: visible;
 }
 
-
+#weather-icon {
+  max-width: fit-content;
+}
 
 
 /*-------------------------------------*/

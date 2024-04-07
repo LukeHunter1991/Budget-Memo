@@ -1,17 +1,20 @@
+// Get daily records from local storage
 let dailyRecords = JSON.parse(localStorage.getItem("logs"));
+
+// If no records in local storage creates an empty array
 if (!dailyRecords) {
   dailyRecords = [];
 }
-//-----------------------------------------------------------------//
-//the script below is about calendar area//
+
+// Create date values for hero calndar
 let nav = 0;
 let clickedDate = null;
 
 const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-const calendarHeaderEl = document.getElementById("calendarHeader");
+const calendarHeaderEl = document.getElementById("calendarHeader")
 const calendarEl = document.getElementById("calendarBody");
 
-//calendar header
+// Create calendar header date and buttons
 const backBtn = document.createElement("button");
 backBtn.textContent = "<";
 backBtn.setAttribute("class", "button is-small");
@@ -19,21 +22,29 @@ const monthTxt = document.createElement("h4");
 const nextBtn = document.createElement("button");
 nextBtn.textContent = ">";
 nextBtn.setAttribute("class", "button is-small");
+
+// Add current date and navigation buttons to calendar header
 calendarHeaderEl.appendChild(backBtn);
 calendarHeaderEl.appendChild(monthTxt);
 calendarHeaderEl.appendChild(nextBtn);
 
-//calendar body
+// Added additional spacing between month header and navigation buttons
+monthTxt.style.margin = "0px 15px";
+
+// Create calendar body
 function loadCalendar() {
-  const dt = new Date(); //today
+
+  // Get todays date
+  const dt = new Date();
   const day = dt.getDate();
   dt.setDate(1);
   dt.setMonth(new Date().getMonth() + nav);
   const month = dt.getMonth();
   const year = dt.getFullYear();
 
-  const firstDayOfMonth = new Date(year, month, 1); //a date
-  const daysInMonth = new Date(year, month + 1, 0).getDate(); //a number
+  // Create variables for month days
+  const firstDayOfMonth = new Date(year, month, 1);
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
 
   const dateString = firstDayOfMonth.toLocaleDateString("en-au", {
     weekday: "short",
@@ -48,8 +59,10 @@ function loadCalendar() {
     month: "long",
   })} ${year}`;
 
+  // Clear calendar element
   calendarEl.innerHTML = "";
 
+  // Loop through calendar and create a div to show the date
   for (let i = 0; i < weekdays.length; i++) {
     const weekdayTitleEl = document.createElement("div");
     weekdayTitleEl.setAttribute("class", "weekday-title text-center");
@@ -63,9 +76,8 @@ function loadCalendar() {
     const clickDay = new Date(year, month, i - paddingDays);
     if (i > paddingDays) {
       dayCubeEl.innerText = i - paddingDays;
-      const logForDay = dailyRecords.find(e => e.date == clickDay);//copy this code
+      const logForDay = dailyRecords.find(e => e.date == clickDay);
       if (logForDay) {
-        console.log(logForDay);
 
         const logDiv = document.createElement('div');
         logDiv.setAttribute('class', 'logRecord');
@@ -76,6 +88,8 @@ function loadCalendar() {
         logDiv.appendChild(button);
         const dailyUlEl = document.createElement('ul');
         const foodLiEl = document.createElement('li');
+
+        // Display only logs that have a user input
         if (logForDay.food != 0) {
           foodLiEl.textContent = `Food: $${logForDay.food.toFixed(2)}`
           dailyUlEl.appendChild(foodLiEl);
@@ -113,6 +127,7 @@ function loadCalendar() {
         logDiv.appendChild(dailyUlEl);
         dayCubeEl.appendChild(logDiv);
 
+        // DIsplay current logs on mouse hover
         dayCubeEl.addEventListener('mouseover', function (event) {
           logDiv.style.display = "block";
         });
@@ -135,7 +150,6 @@ function loadCalendar() {
         const logForClickDay = dailyRecords.find(e => e.date == clickDay);
         if (logForClickDay) {
           const element = event.target;
-          //how to make the delete more clear?????
           if (element.matches('button') === true) {
             element.parentElement.style.display = "none";
             const index = dailyRecords.indexOf(logForClickDay);
@@ -145,7 +159,6 @@ function loadCalendar() {
             loadCalendar();
           }
         } else {
-          ///how to add a condition it is after today??????????
           modalEl.style.display = 'block';
           dateAreaEl.textContent = clickDay;
         };
@@ -175,56 +188,38 @@ function initBtns() {
 
 initBtns();
 loadCalendar();
-//the script above is about calendar area
-//---------------------------------------------------------------------//
 
-//testing modal inputs values
-const modalEl = document.getElementById("modal-test");
+
+// Create variables for all modal elements
+const modalEl = document.getElementById("modal-calendar");
 const dateAreaEl = document.getElementById("modalDateArea");
-const formEl = document.getElementById("modalBody"); //test modal body
-const selectEl = document.getElementById("selectOptionTest");
-const amountEl = document.getElementById("amountTest");
-const addLogBtnEl = document.getElementById("addBtnTest"); //test modal button
-const exitBtnEl = document.getElementById("exitBtnTest");
+const formEl = document.getElementById("modalBody");
+const selectEl = document.getElementById("selectOptionCalendar");
+const amountEl = document.getElementById("amount-calendar");
+const addLogBtnEl = document.getElementById("addBtnCalendar");
+const exitBtnEl = document.getElementById("exitBtnCalendar");
 
-//test modal form submit event
+// Event listener for modal form submit event
 formEl.addEventListener("submit", (event) => {
   event.preventDefault();
-  // handleFormSubmit();
   handleFormSubmit(dateAreaEl.textContent);
   loadCalendar();
   getMonthlyTotal();
 
 });
 
-//////////////deleted handle form submit function//////////
-
-function openModal(date) {
-
-  const logForDay = dailyRecords.find((e) => e.date == date);
-  if (logForDay) {
-    window.alert("log already exists");
-    console.log(logForDay);
-  } else {
-    modalEl.style.display = "block";
-    dateAreaEl.textContent = date;
-  }
-}
 
 function closeModal() {
   modalEl.style.display = "none";
-  document.getElementById("amountTest").textContent = "";
+  document.getElementById("amount-calendar").textContent = "";
 }
 exitBtnEl.addEventListener("click", closeModal);
 document.getElementById('closeBulmaModalBtn').addEventListener("click", closeModal);
 
-
-//document.getElementById('change-theme').addEventListener("click", changeTheme);
-
-
-//-----------------this line below is about sorting array into Month and get monthly total---------------------------------//
-
+// Sort array and get montly totals
 function getMonthlyTotal() {
+
+  // Create a variable for each cost category
   let totalFood = 0;
   let totalUtilities = 0;
   let totalHousing = 0;
@@ -233,6 +228,7 @@ function getMonthlyTotal() {
   let totalGrocery = 0;
   let totalOther = 0;
 
+  // Loop through records and update totals
   for (let i = 0; i < dailyRecords.length; i++) {
     let daytest = new Date(dailyRecords[i].date);
     if (
@@ -248,37 +244,8 @@ function getMonthlyTotal() {
       totalOther += dailyRecords[i].other;
     }
   }
-  console.log(
-    `TotalFood $${Number(Math.round(totalFood + "e2") + "e-2").toFixed(2)}`
-  );
-  console.log(
-    `TotalUtilities $${Number(
-      Math.round(totalUtilities + "e2") + "e-2"
-    ).toFixed(2)}`
-  );
-  console.log(
-    `TotalHousing $${Number(Math.round(totalHousing + "e2") + "e-2").toFixed(
-      2
-    )}`
-  );
-  console.log(
-    `TotalTravel $${Number(Math.round(totalTravel + "e2") + "e-2").toFixed(2)}`
-  );
-  console.log(
-    `TotalEntertainment $${Number(
-      Math.round(totalEntertainment + "e2") + "e-2"
-    ).toFixed(2)}`
-  );
-  console.log(
-    `TotalGrocery $${Number(Math.round(totalGrocery + "e2") + "e-2").toFixed(
-      2
-    )}`
-  );
-  console.log(
-    `TotalOther $${Number(Math.round(totalOther + "e2") + "e-2").toFixed(2)}`
-  );
 
-  //This part is by Melody Yan//
+  // Display monthly totals
   const foodSum = document.querySelector('.js-food-sum');
   foodSum.innerText = `Food: $ ${Number(Math.round(totalFood + 'e2') + 'e-2').toFixed(2)}`;
 

@@ -10,7 +10,7 @@ h3 {
   font-size: x-large;
 }
 
-/*--------------------------------*/
+/* Styling for hero calendar */
 #calendar {
   width: 700px;
   min-width: 700px;
@@ -71,7 +71,7 @@ h3 {
 
 
 
-/*-----------------------------*/
+/* Sidebar styling */
 #cframe {
   border: 1px solid white;
 }
