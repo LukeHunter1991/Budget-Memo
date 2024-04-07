@@ -1,12 +1,17 @@
 function handleFormSubmit(date) {
   const selectedDate = date;
   const category = selectEl.value.toString().toLowerCase();
-  const amount = parseFloat(amountEl.value); //convert input string to number
-  //make sure the amount input is positive
+  // Convert input string to number
+  const amount = parseFloat(amountEl.value);
+
+  // Make sure the amount input is positive
   if (amount > 0 === true) {
+    // Look up exising record
     let existingdayObj = dailyRecords.find((e) => e.date === selectedDate);
     if (existingdayObj !== undefined) {
       existingdayObj[category] = amount;
+
+    // If no existing record found, create object
     } else {
       let dayObj = {
         date: 0,
@@ -22,7 +27,8 @@ function handleFormSubmit(date) {
       dayObj[category] = amount;
       dailyRecords.push(dayObj);
     }
-    console.log(dailyRecords);
+
+    // If valid input update local storage
     localStorage.setItem("logs", JSON.stringify(dailyRecords));
   } else {
     window.alert("please type in valid number");
@@ -63,13 +69,15 @@ function createToastContainer() {
   return container;
 }
 
+// Set default view mode to light
 let mode = 'light';
+
 function changeTheme() {
 
+  // Change view mode between light/dark and sve to local storage for persistant setting
   if (mode === 'light') {
     mode = 'dark';
     localStorage.setItem('mode', mode);
-    console.log(`Mode: ${mode}`);
     (document.querySelectorAll(".box") || []).forEach(($box) => {
       $box.classList.add('theme-dark');
     });
@@ -77,7 +85,6 @@ function changeTheme() {
   } else {
     mode = 'light';
     localStorage.setItem('mode', mode);
-    console.log(`Mode: ${mode}`);
     (document.querySelectorAll(".box") || []).forEach(($box) => {
       $box.classList.remove('theme-dark');
       document.body.style.backgroundImage = 'conic-gradient(from 90deg, #7d8be0, white, #FFF9F0, #d5edf8, #abcdde, #7d8be0)';
@@ -88,15 +95,12 @@ function changeTheme() {
 function renderLastMode() {
   const initialMode = localStorage.getItem('mode');
   if (initialMode !== null) {
-    console.log(initialMode);
     if (initialMode === 'dark') {
-      console.log(`Mode: ${initialMode}`);
       (document.querySelectorAll(".box") || []).forEach(($box) => {
         $box.classList.add('theme-dark');
       });
       document.body.style.background = "black";
     } else {
-      console.log(`Mode: ${initialMode}`);
       document.body.style.backgroundImage = 'conic-gradient(from 90deg, #7d8be0, white, #FFF9F0, #d5edf8, #abcdde, #7d8be0)';
     }
   }

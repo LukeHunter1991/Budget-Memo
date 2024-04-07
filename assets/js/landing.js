@@ -1,11 +1,14 @@
+// Create variables for relevant HTML elements
 const holidayElement = document.getElementById("holiday");
-// const dateEl = document.getElementById("date-header");
 const locationHeader = document.getElementById("current-location");
-
 const submitBtn = document.getElementById("saveBtn");
 const expenseInputEl = document.getElementById("expense-select");
 const amountInputEl = document.getElementById("value-input");
+const todayDateEl = document.getElementById('todayDate');
+const todayWeekEl = document.getElementById('todayWeek');
+const todayMonthYrEl = document.getElementById('todayMonthYr');
 
+// Formats date correctly for holiday call on Calendarific API
 function formatDate() {
   const dt = new Date();
   const options = {
@@ -24,20 +27,15 @@ const day = dt.getDate().toString().padStart(2, "0");
 const month = (dt.getMonth() + 1).toString().padStart(2, "0");
 const year = dt.getFullYear();
 const today = `${year}-${month}-${day}`;
-console.log(today);
 
-//------------------------------------------------------//
+// Format and display date information 
 const displayDayStr = day;
 const displayMonthYrStr = `${dt.toLocaleDateString('en-au', { month: 'short' })} ${year}`;
 const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 let displayWeekStr = weekdays[dt.getDay()];
-const todayDateEl = document.getElementById('todayDate');
-const todayWeekEl = document.getElementById('todayWeek');
-const todayMonthYrEl = document.getElementById('todayMonthYr');
 todayDateEl.textContent = displayDayStr;
 todayWeekEl.textContent = displayWeekStr;
 todayMonthYrEl.textContent = displayMonthYrStr;
-//------------------------------------------------------//
 
 function displayCalendar() {
   fetch(
@@ -47,12 +45,11 @@ function displayCalendar() {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
+      // Get an array of holidays and display the relevant one based on current date
       const holidays = data.response.holidays;
       const todayHoliday = holidays.filter(
         (holiday) => holiday.date.iso === today
       );
-
       if (todayHoliday.length > 0) {
         const holidayToday = todayHoliday[0];
         holidayElement.textContent = holidayToday.name;
@@ -64,17 +61,20 @@ function displayCalendar() {
 
 function updateUserWeather() {
   if (navigator.geolocation) {
+    // Get users current location
     navigator.geolocation.getCurrentPosition((position) => {
       const { latitude, longitude } = position.coords;
       displayWeatherInformation(latitude, longitude);
     });
   } else {
-    console.log("Geolocation is not supported by this browser.");
-    displayWeatherInformation(); // Default to Melbourne if not supported
+    alert("Geolocation is not supported by this browser.");
+    // Default to Melbourne if not supported
+    displayWeatherInformation();
   }
 }
 
 function displayWeatherInformation(lat = -37.8, lon = 144.9) {
+  // Get weather elements from index.html
   const temp = document.getElementById("temp-data");
   const feelLike = document.getElementById("feels-like-data");
   const wind = document.getElementById("wind-data");
@@ -89,7 +89,6 @@ function displayWeatherInformation(lat = -37.8, lon = 144.9) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
 
       // Update temperature
       if (temp) {
@@ -116,6 +115,7 @@ function displayWeatherInformation(lat = -37.8, lon = 144.9) {
         condition.textContent = `${data.weather[0].main}`;
       }
 
+      // Display current location
       if (locationHeader) {
         locationHeader.textContent = `Current Location: ${data.name}`;
       }
@@ -135,8 +135,8 @@ function displayWeatherInformation(lat = -37.8, lon = 144.9) {
       }
     });
 }
-// MODAL CODE
 
+// Modal code
 document.addEventListener("DOMContentLoaded", () => {
   // Functions to open and close a modal
   function openModal($el) {
@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
     displayWeatherInformation();
   }
 
-  // Add a click event on buttons to open a specific modal
+  // Add a click event on buttons to open modal
   (document.querySelectorAll(".js-modal-trigger") || []).forEach(($trigger) => {
     const modal = $trigger.dataset.target;
     const $target = document.getElementById(modal);
@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Add a keyboard event to close all modals
+  // Add a keyboard event to close modal
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       closeAllModals();
@@ -223,7 +223,7 @@ const amountEl = document.getElementById("value-input");
 const addLogBtnEl = document.getElementById("saveBtn");
 const exitBtnEl = document.getElementById("closeBtn");
 
-//test modal form submit event
+// Modal form submit event
 addLogBtnEl.addEventListener("click", (event) => {
   event.preventDefault();
 
@@ -233,10 +233,11 @@ addLogBtnEl.addEventListener("click", (event) => {
   const theYear = currentDate.getFullYear();
   const theDate = new Date(theYear, theMonth, theDay);
   handleFormSubmit(theDate.toString());
-  // Clear form
+  // Clear form on submit
   document.getElementById("form").reset();
 });
 
+// Get HTML elements and add event listener for update weather button and change theme button
 document
   .getElementById("update-weather-btn")
   .addEventListener("click", function () {
