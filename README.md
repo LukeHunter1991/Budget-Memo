@@ -5,6 +5,7 @@
 This application is a monthly budget tracker that also tracks weather and public holidays.
 It retrieves data from third-party APIs https://openweathermap.org and https://calendarific.com, and displays data with dynamically updated HTML and CSS.
 
+Presentation: https://docs.google.com/presentation/d/1X7UIdFxIAkcK7YhHGt-TteMTZQ7MVEdSoqox9XUs-1g/edit#slide=id.p
 
 ## User Story
 
